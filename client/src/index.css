@@ -4,9 +4,24 @@
     margin: 0px;
 }
 .auth-page {
-    background-color: darkgray;
+    background-image: url(https://cdn.hipwallpaper.com/i/32/0/oFqEQK.png);
     min-height: 100vh;
     min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 50%;
+    max-width: 525px;
+    padding: 5%;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .auth-form {
@@ -14,4 +29,48 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.auth-form-input {
+    padding: 2% 5%;
+    margin: 2% 5%;
+    height: 50px;
+    width: 75%;
+    background-color: #333333;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 0px;
+    color: white;
+}
+
+.auth-header {
+    color: white;
+    font-size: 30px;
+    margin: 2% 5%;
+    width: 75%;
+
+}
+
+#login {
+    background-color: lightgreen;
+    margin-top: 5%;
+}
+
+#demo {
+    background-color: lightskyblue;
+    margin-top: 5%;
+}
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px #333333 inset !important;
+    /*use inset box-shadow to cover background-color*/
+    -webkit-text-fill-color: white !important;
+    /*use text fill color to cover font color*/
+    font-size: 16px !important;
+}
+
+input:focus {
+    outline: none;
+    background-color: #494949;
 }
