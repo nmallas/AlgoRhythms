@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { login } from "../store/authReducer";
-import { connect } from "react-redux";
 
-class Login extends React.Component {
+class SignUp extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -26,8 +24,8 @@ class Login extends React.Component {
         return (
             <div className="auth-page">
                 <div className="auth-form-container">
-                    <div className="auth-header"> Sign In </div>
-                    <form method="Post" action="/api/users/login" className="auth-form" >
+                    <div className="auth-header"> Sign Up </div>
+                    <form method="Post" action="/api/users/signup" className="auth-form">
                         <input
                             autoComplete="off"
                             type="email"
@@ -46,26 +44,22 @@ class Login extends React.Component {
                             onChange={this.updateInput}
                             placeHolder="Password">
                         </input>
-                        <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Login</button>
-                        <button type="button" className="auth-form-input" id="demo"> Login as Demo User</button>
+                        <input
+                            type="confirmPassword"
+                            name="confirmPassword"
+                            autoComplete="off"
+                            className="auth-form-input"
+                            value={this.state.confirmPassword}
+                            onChange={this.updateInput}
+                            placeHolder="Confirm Password">
+                        </input>
+                        <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Sign Up</button>
                     </form>
-                    <div> New to AlgoRythm? <Link to="/signup">Create An Account!</Link></div>
+                    <div> Have an Account? <Link to="/login">Log In!</Link></div>
                 </div>
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        userId: state.auth.id
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        loginUser: (email, password) => dispatch(login(email, password))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default SignUp;

@@ -1,6 +1,5 @@
 import os
 
-print(os.environ.get('DATABASE_URL'))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
