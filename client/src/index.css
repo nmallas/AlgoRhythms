@@ -1,1 +1,17 @@
 /* TODO Add site wide styles */
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+.auth-page {
+    background-color: darkgray;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
