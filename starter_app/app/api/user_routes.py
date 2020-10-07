@@ -36,3 +36,22 @@ def login():
             return {"error": "Incorrect Email or Password"}
     print(user.to_dict())
     return {"login": user.to_dict()}
+
+
+@user_routes.route("/logout", methods=["DELETE"])
+def logout():
+    session.pop("userId")
+    if "userId" in session:
+        session.pop('userId', None)
+        return {'msg': 'successfully logged out'}
+    return "error, already logged out"
+
+
+@user_routes.route("/current")
+def current():
+    authentication = {"current": {"id": ""}}
+    if "userId" in session:
+        user = User.query.filter(User.id == session["userId"]).first()
+        authentication = {"current": user.to_dict()}
+    print(authentication)
+    return authentication
