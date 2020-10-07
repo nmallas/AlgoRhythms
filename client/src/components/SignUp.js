@@ -55,7 +55,10 @@ class SignUp extends React.Component {
                         </input>
                         <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Sign Up</button>
                     </form>
-                    <div> Have an Account? <Link to="/login">Log In!</Link></div>
+                    <div className="auth-link">
+                        <div className="auth-link-text"> Already Have an Account?</div>
+                        <div><Link to="/login">Log In!</Link></div>
+                    </div>
                 </div>
             </div>
         )
