@@ -33,7 +33,7 @@ class SignUp extends React.Component {
                             className="auth-form-input"
                             value={this.state.email}
                             onChange={this.updateInput}
-                            placeHolder="Email Address">
+                            placeholder="Email Address">
                         </input>
                         <input
                             type="password"
@@ -42,7 +42,7 @@ class SignUp extends React.Component {
                             autoComplete="off"
                             value={this.state.password}
                             onChange={this.updateInput}
-                            placeHolder="Password">
+                            placeholder="Password">
                         </input>
                         <input
                             type="confirmPassword"
@@ -51,7 +51,7 @@ class SignUp extends React.Component {
                             className="auth-form-input"
                             value={this.state.confirmPassword}
                             onChange={this.updateInput}
-                            placeHolder="Confirm Password">
+                            placeholder="Confirm Password">
                         </input>
                         <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Sign Up</button>
                     </form>

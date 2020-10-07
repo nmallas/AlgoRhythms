@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { login } from "../store/authReducer";
 import { connect } from "react-redux";
 
 class Login extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             email: "",
             password: "",
-            confirmPassword: ""
         }
     }
 
@@ -19,15 +18,19 @@ class Login extends React.Component {
 
     handleSumbit = (e) => {
         e.preventDefault();
+        this.props.loginUser(this.state.email, this.state.password)
+    }
 
+    demoLogin = (e) => {
+        this.props.loginUser("demo@user.io", "password")
     }
 
     render() {
-        return (
+        return this.props.userId ? <Redirect to="/"/> : (
             <div className="auth-page">
                 <div className="auth-form-container">
                     <div className="auth-header"> Sign In </div>
-                    <form method="Post" action="/api/users/login" className="auth-form" >
+                    <form className="auth-form" onSubmit={this.handleSumbit}>
                         <input
                             autoComplete="off"
                             type="email"
@@ -35,7 +38,7 @@ class Login extends React.Component {
                             className="auth-form-input"
                             value={this.state.email}
                             onChange={this.updateInput}
-                            placeHolder="Email Address">
+                            placeholder="Email Address">
                         </input>
                         <input
                             type="password"
@@ -44,10 +47,14 @@ class Login extends React.Component {
                             autoComplete="off"
                             value={this.state.password}
                             onChange={this.updateInput}
-                            placeHolder="Password">
+                            placeholder="Password">
                         </input>
-                        <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Login</button>
-                        <button type="button" className="auth-form-input" id="demo"> Login as Demo User</button>
+                        <button type="submit" className="auth-form-input" id="login" >
+                            Login
+                        </button>
+                        <button type="button" className="auth-form-input" id="demo" onClick={this.demoLogin}>
+                            Login as Demo User
+                        </button>
                     </form>
                     <div> New to AlgoRythm? <Link to="/signup">Create An Account!</Link></div>
                 </div>

@@ -4,6 +4,7 @@ export default function(state={}, action) {
     let newState = {...state}
     switch(action.type) {
         case(LOGIN):
+            console.log(action.user)
            return action.user;
         default:
             return state;
@@ -11,13 +12,13 @@ export default function(state={}, action) {
 }
 
 const SetUser = (user) => ({
-    type: login,
+    type: LOGIN,
     user
 })
 
 
-export const login = (dispatch) => {
-    return async (email, password) => {
+export const login = (email, password) => {
+    return async (dispatch) => {
         let res = await fetch("/api/users/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
