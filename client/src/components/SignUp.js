@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signup } from "../store/authReducer";
 import { connect } from "react-redux";
 
@@ -18,16 +18,13 @@ class SignUp extends React.Component {
     }
 
     handleSumbit = (e) => {
+        e.preventDefault();
         console.log('submitting')
-        this.props.SignUpUser(
-            this.state.email,
-            this.state.password,
-            this.state.confirmPassword
-        )
+        this.props.SignUpUser(this.state)
     }
 
     render() {
-        return (
+        return this.props.userId ? <Redirect to="/"/> :  (
             <div className="auth-page">
                 <div className="auth-form-container">
                     <div className="auth-header"> Sign Up </div>
@@ -79,7 +76,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        SignUpUser: (email, password, confirmPassword) => dispatch(signup(email, password, confirmPassword))
+        SignUpUser: ({email, password, confirmPassword}) => dispatch(signup(email, password, confirmPassword))
     }
 }
 

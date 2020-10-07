@@ -34,7 +34,6 @@ export const login = (email, password) => {
 
 
 export const signup = (email, password, confirmPassword) => {
-    console.log(email, password, confirmPassword)
     return async (dispatch) => {
         let res = await fetch("/api/users/", {
             method: "POST",

@@ -20,7 +20,7 @@ def createUser():
     user = User.query.filter(User.email == data["email"]).first()
     if user:
         session["userId"] = user.id
-    print(user.to_dict())
+    print({"login": user.to_dict()})
     return {"login": user.to_dict()}
 
 
