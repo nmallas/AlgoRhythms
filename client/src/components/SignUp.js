@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { signup } from "../store/authReducer";
+import { connect } from "react-redux";
 
 class SignUp extends React.Component {
     constructor() {
@@ -16,8 +18,12 @@ class SignUp extends React.Component {
     }
 
     handleSumbit = (e) => {
-        e.preventDefault();
-
+        console.log('submitting')
+        this.props.SignUpUser(
+            this.state.email,
+            this.state.password,
+            this.state.confirmPassword
+        )
     }
 
     render() {
@@ -25,7 +31,7 @@ class SignUp extends React.Component {
             <div className="auth-page">
                 <div className="auth-form-container">
                     <div className="auth-header"> Sign Up </div>
-                    <form method="Post" action="/api/users/signup" className="auth-form">
+                    <form className="auth-form" onSubmit={this.handleSumbit}>
                         <input
                             autoComplete="off"
                             type="email"
@@ -45,7 +51,7 @@ class SignUp extends React.Component {
                             placeholder="Password">
                         </input>
                         <input
-                            type="confirmPassword"
+                            type="password"
                             name="confirmPassword"
                             autoComplete="off"
                             className="auth-form-input"
@@ -53,7 +59,7 @@ class SignUp extends React.Component {
                             onChange={this.updateInput}
                             placeholder="Confirm Password">
                         </input>
-                        <button type="submit" className="auth-form-input" id="login" onSubmit={this.handleSumbit}> Sign Up</button>
+                        <button type="submit" className="auth-form-input" id="login"> Sign Up</button>
                     </form>
                     <div className="auth-link">
                         <div className="auth-link-text"> Already Have an Account?</div>
@@ -65,4 +71,16 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+function mapStateToProps(state) {
+    return {
+        userId: state.auth.id
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        SignUpUser: (email, password, confirmPassword) => dispatch(signup(email, password, confirmPassword))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

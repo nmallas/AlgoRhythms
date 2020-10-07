@@ -31,3 +31,20 @@ export const login = (email, password) => {
         }
     }
 }
+
+
+export const signup = (email, password, confirmPassword) => {
+    console.log(email, password, confirmPassword)
+    return async (dispatch) => {
+        let res = await fetch("/api/users/", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({email, password, confirmPassword})
+        })
+        if (res.ok) {
+            let data = await res.json();
+            console.log(data);
+            dispatch(SetUser(data.login))
+        }
+    }
+}

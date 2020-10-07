@@ -1,21 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import { Provider } from "react-redux";
+import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
 import Login from "./components/Login";
 import SignUp from './components/SignUp';
-import configureStore from './store/configureStore';
+import { useSelector } from "react-redux";
+import Home from "./components/Home"
 
 
 function App() {
 
-    console.log("____Rendering app_____")
+    const userId = useSelector(state => state.auth.id);
 
-    const store = configureStore({auth: {id: ""}})
+    const ProtectedRoute = function({path, exact, component}) {
+        return (!userId) ? <Redirect to="/login"/> :
+            <Route exact={exact} path={path} component={component}/>
+    }
 
     return (
         <BrowserRouter>
-            <Provider store={store}>
+
                 {/* <nav>
                     <ul>
                         <li><NavLink to="/" activeclass="active">Home</NavLink></li>
@@ -24,11 +27,8 @@ function App() {
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
-                    <Route path="/">
-                        <h1>My Home Page</h1>
-                    </Route>
+                    <ProtectedRoute exact path="/" component={Home}/>
                 </Switch>
-            </Provider>
         </BrowserRouter>
     );
 }
