@@ -91,3 +91,9 @@ input:focus {
     outline: none;
     background-color: #494949;
 }
+
+.visual-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #040F15;
+}
