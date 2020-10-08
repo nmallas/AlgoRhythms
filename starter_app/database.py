@@ -9,7 +9,8 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-    demo = User(email='demo@user.io',
+    demo = User(email="demo@user.io",
+                username="Demolition",
                 hashedPassword=sha256_crypt.hash("password"))
 
     db.session.add(demo)
