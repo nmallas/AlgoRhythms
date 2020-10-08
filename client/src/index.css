@@ -3,6 +3,8 @@
     box-sizing: border-box;
     margin: 0px;
 }
+
+/* AUTH */
 .auth-page {
     background-image: url(https://cdn.hipwallpaper.com/i/32/0/oFqEQK.png);
     min-height: 100vh;
@@ -92,8 +94,37 @@ input:focus {
     background-color: #494949;
 }
 
+/* AUTH */
+
+
+
+
+/* VISUALS */
+
 .visual-container {
     min-height: 100vh;
     min-width: 100vw;
     background-color: #040F15;
 }
+
+/* VISUALS */
+
+
+
+
+
+/* Quizzes */
+
+.quizzes {
+}
+
+.quiz {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: lightgreen;
+}
+
+
+/* Quizzes */

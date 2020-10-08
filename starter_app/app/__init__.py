@@ -6,14 +6,17 @@ from flask_migrate import Migrate
 
 from .models import db, User
 from .api.user_routes import user_routes
+from .api.quiz_routes import quiz_routes
 
 from .config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(quiz_routes, url_prefix='/api/quizzes')
 db.init_app(app)
 Migrate(app, db)
+
 
 ## Application Security
 CORS(app)

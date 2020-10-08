@@ -7,6 +7,8 @@ import { useSelector, useDispatch} from "react-redux";
 import Home from "./components/Home"
 import { getCurrent } from "./store/authReducer";
 import Visuals from './components/Visuals';
+import QuizPage from "./components/QuizPage"
+import Quiz from './components/Quiz';
 
 
 function App() {
@@ -22,23 +24,30 @@ function App() {
     const userId = useSelector(state => state.auth.id);
 
     const ProtectedRoute = function({path, exact, component}) {
-        return (!userId) ? <Redirect to="/login"/> :
-            <Route exact={exact} path={path} component={component}/>
+        return (userId) ? (
+            <>
+                <nav>
+                        <ul>
+                            <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+                            <li><NavLink to="/quizzes" activeclass="active">Quizzes</NavLink></li>
+                        </ul>
+                </nav>
+                <Route exact={exact} path={path} component={component}/>
+            </>
+        ) : <Redirect to="/login"/>
     }
 
     return (
         <BrowserRouter>
 
-                {/* <nav>
-                    <ul>
-                        <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                    </ul>
-                </nav> */}
+
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
                     <Route path="/visuals" component={Visuals}/>
                     <ProtectedRoute exact path="/" component={Home}/>
+                    <ProtectedRoute exact path="/quizzes" component={QuizPage}/>
+                    <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>
                 </Switch>
         </BrowserRouter>
     );
