@@ -1,21 +1,34 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import { Provider } from "react-redux";
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
 import Login from "./components/Login";
 import SignUp from './components/SignUp';
-import configureStore from './store/configureStore';
+import { useSelector, useDispatch} from "react-redux";
+import Home from "./components/Home"
+import { getCurrent } from "./store/authReducer";
+import Visuals from './components/Visuals';
 
 
 function App() {
 
-    console.log("____Rendering app_____")
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
 
-    const store = configureStore({auth: {id: ""}})
+    useEffect(() => {
+        dispatch(getCurrent());
+        setLoading(false);
+    }, [])
+
+    const userId = useSelector(state => state.auth.id);
+
+    const ProtectedRoute = function({path, exact, component}) {
+        return (!userId) ? <Redirect to="/login"/> :
+            <Route exact={exact} path={path} component={component}/>
+    }
 
     return (
         <BrowserRouter>
-            <Provider store={store}>
+
                 {/* <nav>
                     <ul>
                         <li><NavLink to="/" activeclass="active">Home</NavLink></li>
@@ -24,11 +37,9 @@ function App() {
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
-                    <Route path="/">
-                        <h1>My Home Page</h1>
-                    </Route>
+                    <Route path="/visuals" component={Visuals}/>
+                    <ProtectedRoute exact path="/" component={Home}/>
                 </Switch>
-            </Provider>
         </BrowserRouter>
     );
 }

@@ -56,7 +56,10 @@ class Login extends React.Component {
                             Login as Demo User
                         </button>
                     </form>
-                    <div> New to AlgoRythm? <Link to="/signup">Create An Account!</Link></div>
+                    <div className="auth-link">
+                        <div className="auth-link-text"> New to AlgoRythm?</div>
+                        <div><Link to="/signup">Create An Account!</Link></div>
+                    </div>
                 </div>
             </div>
         )

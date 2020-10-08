@@ -49,7 +49,24 @@
     font-size: 30px;
     margin: 2% 5%;
     width: 75%;
+    font-weight: bold;
+}
 
+.auth-link {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.auth-link-text {
+    color: #737373;
+    margin: 0 3px;
+}
+
+.auth-link a {
+    text-decoration: none;
+    color: white;
+    margin: 0 4px;
 }
 
 #login {
@@ -73,4 +90,10 @@ input:-webkit-autofill {
 input:focus {
     outline: none;
     background-color: #494949;
+}
+
+.visual-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #040F15;
 }
