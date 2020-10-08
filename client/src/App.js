@@ -6,6 +6,7 @@ import SignUp from './components/SignUp';
 import { useSelector, useDispatch} from "react-redux";
 import Home from "./components/Home"
 import { getCurrent } from "./store/authReducer";
+import Visuals from './components/Visuals';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
+                    <Route path="/visuals" component={Visuals}/>
                     <ProtectedRoute exact path="/" component={Home}/>
                 </Switch>
         </BrowserRouter>
