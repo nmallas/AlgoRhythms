@@ -126,5 +126,19 @@ input:focus {
     background-color: lightgreen;
 }
 
+.mc-answers {
+    display: flex;
+    flex-direction: column;
+}
+
+.mc-answer {
+    display: flex;
+    flex-direction: row;
+}
+
+.mc-question-title {
+    font-size: 20px;
+    font-weight: 600;
+}
 
 /* Quizzes */
