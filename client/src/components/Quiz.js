@@ -48,9 +48,9 @@ export default function Quiz(props) {
                                     q.answers.map((a, i) =>
                                         <div className="mc-answer">
                                             <div >{i+1}.</div>
-                                            <input  checked={answers[q.question.id] === a.order}
-                                                    onClick={updateAnswers} type="radio" name={q.question.id}
+                                            <input  onChange={updateAnswers} type="radio" name={q.question.id}
                                                     value={a.order} style={{"marginLeft": "10px"}}
+                                                    checked={answers[q.question.id] == a.order}
                                             />
                                             <div style={{"marginLeft": "10px"}}>{a.content} </div>
                                         </div>)}
@@ -59,7 +59,7 @@ export default function Quiz(props) {
                         )
                     }
                 })}
-                <button type="submit" onclick={handleClick}>Submit</button>
+                <button type="submit" onClick={handleClick}>Submit</button>
             </form>
         </div>
     )

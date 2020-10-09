@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {BarChart, CartesianGrid, XAxis, YAxis, Bar, Cell, Tooltip} from "recharts";
+import {BarChart, CartesianGrid, XAxis, YAxis, Bar, Cell, Tooltip, ResponsiveContainer} from "recharts";
 
 
 
@@ -99,7 +99,8 @@ export default function Visuals(props) {
     return (
         <div className="visual-container">
             <div className="chart-container">
-                <BarChart width={730} height={250} data={data}>
+            <ResponsiveContainer width="70%" height={350}>
+                <BarChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     {/* <XAxis dataKey="index" /> */}
                     <YAxis />
@@ -115,6 +116,7 @@ export default function Visuals(props) {
                     }
                     </Bar>
                 </BarChart>
+            </ResponsiveContainer>
             </div>
             <div className="visual-button-container">
                 <button id="bubble" onClick={handleSort}> BubbleSort</button>

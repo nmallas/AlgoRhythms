@@ -36,7 +36,6 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quizId = db.Column(db.Integer, db.ForeignKey("quizzes.id"))
     questionType = db.Column(db.String(200), nullable=False)
-    answer = db.Column(db.Integer, nullable=False)
     content = db.Column(db.String(2500))
 
     quiz = db.relationship("Quiz")
@@ -51,6 +50,17 @@ class AnswerChoice(db.Model):
     questionId = db.Column(db.Integer, db.ForeignKey("questions.id"))
 
     question = db.relationship("Question")
+
+
+class AnswerJoin(db.Model):
+    __tablename__ = "answerJoins"
+
+    id = db.Column(db.Integer, primary_key=True)
+    questionId = db.Column(db.Integer, db.ForeignKey("questions.id"))
+    answerChoiceId = db.Column(db.Integer, db.ForeignKey("answerChoices.id"))
+
+    question = db.relationship("Question")
+    answerChoice = db.relationship("AnswerChoice")
 
 
 class Submission(db.Model):

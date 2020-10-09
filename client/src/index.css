@@ -114,17 +114,39 @@ input:focus {
 .chart-container {
     display: flex;
     justify-content: center;
+    padding-top: 50px;
 }
 
 .visual-button-container {
+    width: 70%;
     display: flex;
+    margin: 0 auto;
+    padding-left: 7%;
     justify-content: center;
+
 }
 
 #bubble, #selection, #insertion {
-    width: 20%;
-    margin: 20px;
+    width: 200px;
+    margin: 3%;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    background-color: #848ccf;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
 }
+
+#bubble:hover, #selection:hover, #insertion:hover {
+    background-color: #93b5e1;
+    cursor: pointer;
+}
+
+/* #bubble:active, #selection:active, #insertion:active {
+
+    background-color: #93b5e1;
+} */
 
 /* VISUALS */
 

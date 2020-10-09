@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from app import app, db
-from app.models import User, Quiz, Question, AnswerChoice
+from app.models import User, Quiz, Question, AnswerChoice, AnswerJoin
 from passlib.hash import sha256_crypt
 
 load_dotenv()
@@ -19,10 +19,9 @@ with app.app_context():
 
     question1 = Question(quizId=1,
                          questionType="mc",
-                         answer=2,
-                         content="Is JavaScript single threaded or multi-threaded?")
+                         content="Is JavaScript single threaded or multi threaded?")
 
-    q1a1 = AnswerChoice(content="Multi-threaded",
+    q1a1 = AnswerChoice(content="Multi threaded",
                         order=1,
                         questionId=1)
 
@@ -30,9 +29,10 @@ with app.app_context():
                         order=2,
                         questionId=1)
 
+    answerJoin1 = AnswerJoin(questionId=1, answerChoiceId=2)
+
     question2 = Question(quizId=1,
                          questionType="mc",
-                         answer=3,
                          content="What is one difference between let and var?")
 
     q2a1 = AnswerChoice(content="Let cannot be reassigned while var can",
@@ -47,9 +47,10 @@ with app.app_context():
                         order=3,
                         questionId=2)
 
+    answerJoin2 = AnswerJoin(questionId=2, answerChoiceId=5)
+
     question3 = Question(quizId=1,
                          questionType="mc",
-                         answer=1,
                          content="What is the best possible time complexity of an algorithm in general?")
 
     q3a1 = AnswerChoice(content="Constant",
@@ -68,6 +69,8 @@ with app.app_context():
                         order=4,
                         questionId=3)
 
+    answerJoin3 = AnswerJoin(questionId=3, answerChoiceId=6)
+
 
 
     db.session.add(demo)
@@ -75,15 +78,18 @@ with app.app_context():
     db.session.add(question1)
     db.session.add(q1a1)
     db.session.add(q1a2)
+    db.session.add(answerJoin1)
     db.session.add(question2)
     db.session.add(q2a1)
     db.session.add(q2a2)
     db.session.add(q2a3)
+    db.session.add(answerJoin2)
     db.session.add(question3)
     db.session.add(q3a1)
     db.session.add(q3a2)
     db.session.add(q3a3)
     db.session.add(q3a4)
+    db.session.add(answerJoin3)
 
 
 
