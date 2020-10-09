@@ -54,4 +54,4 @@ def submit():
         wrongAnswer = IncorrectAnswers(submissionId=submission.id, answerChoiceId=answerChoice)
         db.session.add(wrongAnswer)
     db.session.commit()
-    return {"score": submission.score, "incorrectChoices": incorrect, "correctAnswers": correctAnswers}
+    return {"quizId": int(data["quizId"]), "latest": {"score": submission.score, "incorrectChoices": incorrect, "correctAnswers": correctAnswers}}

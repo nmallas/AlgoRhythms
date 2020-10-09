@@ -219,7 +219,7 @@ input:focus {
 
 .quiz-page {
     min-height: 100vh;
-    background-color: rgb(221, 242, 255);
+    background-color: rgb(227, 244, 255);
 }
 
 .quiz-name {
@@ -227,6 +227,7 @@ input:focus {
     text-align: center;
     /* margin-top: 20px; */
     background-color: transparent;
+    border-bottom: 1px solid black;
 }
 
 .quiz {
@@ -268,8 +269,8 @@ input:focus {
     border-bottom: 1px solid black;
     font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
     background-color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
     min-height: max-content;
 }
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { submitQuiz } from "../store/quizReducer"
 
 
 export default function Quiz(props) {
@@ -11,6 +12,7 @@ export default function Quiz(props) {
     let [answers, setAnswers] = useState({});
     let [quizErrors, setQuizErrors] = useState("");
     let userId = useSelector(state => state.auth.id);
+    let dispatch = useDispatch();
 
     useEffect(()=> {
         async function getQuiz() {
@@ -35,15 +37,8 @@ export default function Quiz(props) {
             setQuizErrors("* You Must Answer Every Question *");
             return;
         }
-        let res = await fetch("/api/quizzes/submit", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({answers, quizId, userId})
-        })
-        if(res.ok) {
-            let data = await res.json();
-            console.log(data);
-        }
+        dispatch(submitQuiz({answers, quizId, userId}))
+
     }
 
     const updateAnswers = (e) => {
@@ -65,7 +60,7 @@ export default function Quiz(props) {
                                     <div className="mc-answers">
                                         {
                                         q.answers.map((a, i) =>
-                                            <div className="mc-answer">
+                                            <div className="mc-answer" >
                                                 <div >{i+1}.</div>
                                                 <input  onChange={updateAnswers} type="radio" name={q.question.id}
                                                         value={a.id} style={{"marginLeft": "10px"}}
