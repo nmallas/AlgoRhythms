@@ -90,22 +90,24 @@ export default function Visuals(props) {
             <button id="bubble" onClick={handleSort}> BubbleSort</button>
             <button id="selection" onClick={handleSort}> SelectionSort</button>
             <button id="insertion" onClick={handleSort}> InsertionSort</button>
-            <BarChart width={730} height={250} data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                {/* <XAxis dataKey="index" /> */}
-                <YAxis />
-                {/* <Tooltip position={{"x": 25, "y": 0}} animationDuration={2500}/> */}
-                <Bar dataKey="val" >
-                {
-                    data.map((entry, i) => {
-                        const color = (entry.completed?.includes(i)) ? "#ed6663" :
-                                      (entry.current?.includes(i)) ? "#ffa372":
-                                      "#4e89ae";
-                        return <Cell fill={color} />;
-                    })
-                }
-                </Bar>
-            </BarChart>
+            <div className="chart-container">
+                <BarChart width={730} height={250} data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    {/* <XAxis dataKey="index" /> */}
+                    <YAxis />
+                    {/* <Tooltip position={{"x": 25, "y": 0}} animationDuration={2500}/> */}
+                    <Bar dataKey="val" >
+                    {
+                        data.map((entry, i) => {
+                            const color = (entry.completed?.includes(i)) ? "#ed6663" :
+                                        (entry.current?.includes(i)) ? "#ffa372":
+                                        "#4e89ae";
+                            return <Cell fill={color} />;
+                        })
+                    }
+                    </Bar>
+                </BarChart>
+            </div>
         </div>
     )
 }

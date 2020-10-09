@@ -6,7 +6,10 @@
 
 /* AUTH */
 .auth-page {
-    background-image: url(https://cdn.hipwallpaper.com/i/32/0/oFqEQK.png);
+    /* background-image: url(https://cdn.hipwallpaper.com/i/32/0/oFqEQK.png); */
+    background-image: url(https://cdn.nohat.cc/thumb/f/720/comrawpixel1015329.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
     min-width: 100vw;
     display: flex;
@@ -94,6 +97,7 @@ input:focus {
     background-color: #494949;
 }
 
+
 /* AUTH */
 
 
@@ -107,9 +111,72 @@ input:focus {
     background-color: #040F15;
 }
 
+.chart-container {
+    display: flex;
+    justify-content: center;
+}
+
 /* VISUALS */
 
 
+/* NAV */
+
+.nav-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #4e89ae;
+    position: static;
+    height: 50px;
+    padding: 0 15%;
+}
+
+.nav-list li {
+    width: 100%;
+}
+
+.nav-list li, .nav-list a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a, .nav-list button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+}
+
+.active {
+    background-color: #43658b;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+#logout {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 0px;
+    font-size: 16px;
+}
+
+#logout:hover {
+    cursor: pointer;
+    background-color: #ffa372;
+}
+
+/* NAV */
 
 
 
