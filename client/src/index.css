@@ -217,6 +217,18 @@ input:focus {
 .quizzes {
 }
 
+.quiz-page {
+    min-height: 100vh;
+    background-color: rgb(221, 242, 255);
+}
+
+.quiz-name {
+    padding-top: 20px;
+    text-align: center;
+    /* margin-top: 20px; */
+    background-color: transparent;
+}
+
 .quiz {
     margin-top: 20px;
     display: flex;
@@ -250,7 +262,22 @@ input:focus {
 
 .quiz-container {
     margin-left: 10%;
+    margin-right: 10%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: max-content;
+}
+
+.errors {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0;
 }
 
 /* Quizzes */
