@@ -14,6 +14,7 @@ def createUser():
         return {"error": "Passwords Must Match!"}
     newUser = User(
                 email=data["email"],
+                username=data["username"],
                 hashedPassword=sha256_crypt.hash(data["password"]))
     db.session.add(newUser)
     db.session.commit()

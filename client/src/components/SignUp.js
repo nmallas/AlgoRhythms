@@ -8,6 +8,7 @@ class SignUp extends React.Component {
         super()
         this.state = {
             email: "",
+            username: "",
             password: "",
             confirmPassword: ""
         }
@@ -37,6 +38,14 @@ class SignUp extends React.Component {
                             value={this.state.email}
                             onChange={this.updateInput}
                             placeholder="Email Address">
+                        </input>
+                        <input
+                            autoComplete="off"
+                            name="username"
+                            className="auth-form-input"
+                            value={this.state.username}
+                            onChange={this.updateInput}
+                            placeholder="Username">
                         </input>
                         <input
                             type="password"
@@ -76,7 +85,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        SignUpUser: ({email, password, confirmPassword}) => dispatch(signup(email, password, confirmPassword))
+        SignUpUser: ({email, username, password, confirmPassword}) => dispatch(signup(email, username, password, confirmPassword))
     }
 }
 
