@@ -116,6 +116,16 @@ input:focus {
     justify-content: center;
 }
 
+.visual-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+#bubble, #selection, #insertion {
+    width: 20%;
+    margin: 20px;
+}
+
 /* VISUALS */
 
 

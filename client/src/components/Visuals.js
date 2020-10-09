@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {BarChart, CartesianGrid, XAxis, YAxis, Bar, Cell, Tooltip} from "recharts";
 
 
 
 export default function Visuals(props) {
     const arr = [8,5,6,12,2,9,1,4]
-    const [data, setData] = useState(arr.map((el, i) => ({index: i, val: el})))
+    const [data, setData] = useState(arr.map((el, i) => ({index: i, val: el})));
+    let currentTimeouts = [];
 
     const updateData = (arrCopy, k, c) => setData(arrCopy.map((el, i) => ({index: i, val: el, current: k, completed: c})));
 
+    const clearTimeouts = () => {
+        currentTimeouts.forEach(timeout => clearTimeout(timeout))
+    }
+
+    useEffect(()=> clearTimeouts, [])
+
     function sleep (time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
+        return new Promise((resolve) => {
+            let timeout = setTimeout(resolve, time);
+            currentTimeouts.push(timeout)
+            return timeout;
+        });
     }
 
 
@@ -87,9 +98,6 @@ export default function Visuals(props) {
 
     return (
         <div className="visual-container">
-            <button id="bubble" onClick={handleSort}> BubbleSort</button>
-            <button id="selection" onClick={handleSort}> SelectionSort</button>
-            <button id="insertion" onClick={handleSort}> InsertionSort</button>
             <div className="chart-container">
                 <BarChart width={730} height={250} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -107,6 +115,11 @@ export default function Visuals(props) {
                     }
                     </Bar>
                 </BarChart>
+            </div>
+            <div className="visual-button-container">
+                <button id="bubble" onClick={handleSort}> BubbleSort</button>
+                <button id="selection" onClick={handleSort}> SelectionSort</button>
+                <button id="insertion" onClick={handleSort}> InsertionSort</button>
             </div>
         </div>
     )
