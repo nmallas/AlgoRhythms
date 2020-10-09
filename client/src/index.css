@@ -134,11 +134,24 @@ input:focus {
 .mc-answer {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 .mc-question-title {
     font-size: 20px;
     font-weight: 600;
+    font-family: "Times New Roman", serif;
+}
+
+.mc-question {
+    margin-top: 20px;
+}
+
+.quiz-container {
+    margin-left: 10%;
+    font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
 
 /* Quizzes */

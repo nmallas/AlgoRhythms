@@ -23,7 +23,7 @@ def get_one(id):
     print(questions)
     all_questions = []
     for question in questions:
-        question_info = {"type": question.questionType, "answer": question.answer, "content": question.content}
+        question_info = {"type": question.questionType, "answer": question.answer, "content": question.content, "id": question.id}
         answers = AnswerChoice.query.filter(AnswerChoice.questionId == question.id).all()
         question_and_answers = {"question": question_info, "answers": [{"order": answer.order, "content": answer.content} for answer in answers]}
         print(question_and_answers)
