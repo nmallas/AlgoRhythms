@@ -3,9 +3,11 @@ import authReducer from "./authReducer";
 import logger from "redux-logger";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import quizReducer from "./quizReducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    quizzes: quizReducer
 })
 
 let storeEnhancer;

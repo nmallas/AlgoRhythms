@@ -8,6 +8,6 @@ export default function Logout(props) {
     const logoutUser = () => dispatch(logout())
 
     return (
-        <button onClick={logoutUser}> Logout </button>
+        <button onClick={logoutUser} id="logout"> Logout </button>
     )
 }
