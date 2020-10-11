@@ -281,4 +281,25 @@ input:focus {
     margin: 20px 0;
 }
 
+.quiz-feedback {
+    width: 20px;
+}
+
+.quiz-submit {
+    padding: 10px;
+    color: white;
+    background-color: #03C805;
+    width: 25%;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 10px;
+    outline: none;
+}
+
+.quiz-submit:hover {
+    cursor: pointer;
+    background-color: #04b907;
+}
+
 /* Quizzes */

@@ -12,6 +12,8 @@ export default function Quiz(props) {
     let [answers, setAnswers] = useState({});
     let [quizErrors, setQuizErrors] = useState("");
     let userId = useSelector(state => state.auth.id);
+    let taken = useSelector(state => state.quizzes.current);
+    console.log(taken);
     let dispatch = useDispatch();
 
     useEffect(()=> {
@@ -61,8 +63,21 @@ export default function Quiz(props) {
                                         {
                                         q.answers.map((a, i) =>
                                             <div className="mc-answer" >
-                                                <div >{i+1}.</div>
+                                                {taken && taken.incorrectChoices.includes(String(a.id)) ?
+                                                    <div className={"quiz-feedback"} style={{color: "#FF5103"}}>✘</div> :
+                                                taken && taken.correctChoices.includes(String(a.id)) ?
+                                                    <div className={"quiz-feedback"} style={{color: "#03C805"}} >✔</div> :
+                                                taken && taken.correctAnswers.includes(a.id) && !(taken.correctChoices.includes(String(a.id))) ?
+                                                <div className={"quiz-feedback"} style={{color: "#03C805"}} >➞</div> :
+                                                    <div className={"quiz-feedback"}/>
+                                                }
+                                                {/* <div className={"quiz-feedback"}>{
+                                                    taken && taken.incorrectChoices.includes(String(a.id)) ? "✘" :
+                                                    taken && taken.correctChoices.includes(String(a.id)) ? "✔" : ""}
+                                                </div> */}
+                                                <div> {i+1}.</div>
                                                 <input  onChange={updateAnswers} type="radio" name={q.question.id}
+                                                        disabled={taken}
                                                         value={a.id} style={{"marginLeft": "10px"}}
                                                         checked={answers[q.question.id] == a.id}
                                                 />
@@ -74,7 +89,7 @@ export default function Quiz(props) {
                         }
                     })}
                     <div className="errors">{quizErrors}</div>
-                    <button type="submit" onClick={handleClick}>Submit</button>
+                    <button type="submit" onClick={handleClick} className="quiz-submit">Submit</button>
                 </form>
             </div>
         </div>
