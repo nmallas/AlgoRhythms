@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { submitQuiz } from "../store/quizReducer"
+import { submitQuiz, resetCurrentAnswers } from "../store/quizReducer";
 
 
 export default function Quiz(props) {
@@ -40,7 +40,11 @@ export default function Quiz(props) {
             return;
         }
         dispatch(submitQuiz({answers, quizId, userId}))
+    }
 
+    const handleReset = (e) => {
+        e.preventDefault();
+        dispatch(resetCurrentAnswers())
     }
 
     const updateAnswers = (e) => {
@@ -53,6 +57,9 @@ export default function Quiz(props) {
         <div className="quiz-page">
             <div className="quiz-container">
                 <h1 className="quiz-name"> {quizName} </h1>
+                {/* {taken ? <h3 className="quiz-score"> {`Your Score is ${taken.score}%`}</h3> : <div className="quiz-score"/>} */}
+
+                {taken && <h3 className={"quiz-score"}> {`Your Score is ${taken.score}%` }</h3>}
                 <form>
                     {quizData.map(q => {
                         if(q.question.type === "mc") {
@@ -71,15 +78,11 @@ export default function Quiz(props) {
                                                 <div className={"quiz-feedback"} style={{color: "#03C805"}} >➞</div> :
                                                     <div className={"quiz-feedback"}/>
                                                 }
-                                                {/* <div className={"quiz-feedback"}>{
-                                                    taken && taken.incorrectChoices.includes(String(a.id)) ? "✘" :
-                                                    taken && taken.correctChoices.includes(String(a.id)) ? "✔" : ""}
-                                                </div> */}
                                                 <div> {i+1}.</div>
                                                 <input  onChange={updateAnswers} type="radio" name={q.question.id}
                                                         disabled={taken}
                                                         value={a.id} style={{"marginLeft": "10px"}}
-                                                        checked={answers[q.question.id] == a.id}
+                                                        checked={ answers[q.question.id] == a.id}
                                                 />
                                                 <div style={{"marginLeft": "10px"}}>{a.content} </div>
                                             </div>)}
@@ -89,7 +92,8 @@ export default function Quiz(props) {
                         }
                     })}
                     <div className="errors">{quizErrors}</div>
-                    <button type="submit" onClick={handleClick} className="quiz-submit">Submit</button>
+                    <button type="submit" onClick={handleClick} className="quiz-submit quiz-button">Submit</button>
+                    <button type="button" onClick={handleReset} className="quiz-reset quiz-button" hidden={!taken}> Reset</button>
                 </form>
             </div>
         </div>

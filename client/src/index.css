@@ -272,6 +272,7 @@ input:focus {
     padding-left: 25px;
     padding-right: 25px;
     min-height: max-content;
+    position: relative;
 }
 
 .errors {
@@ -285,10 +286,9 @@ input:focus {
     width: 20px;
 }
 
-.quiz-submit {
+.quiz-button {
     padding: 10px;
     color: white;
-    background-color: #03C805;
     width: 25%;
     border: none;
     border-radius: 5px;
@@ -297,9 +297,31 @@ input:focus {
     outline: none;
 }
 
+.quiz-submit {
+    background-color: #03C805;
+}
+
 .quiz-submit:hover {
     cursor: pointer;
     background-color: #04b907;
+}
+
+.quiz-reset {
+    background-color: #FF5103;
+    position: absolute;
+    right: 25px;
+
+}
+
+.quiz-reset:hover {
+    cursor: pointer;
+    background-color: #cf4404;
+}
+
+.quiz-score {
+    text-align: center;
+    background-color: #3fd342;
+    padding: 5px 0;
 }
 
 /* Quizzes */
