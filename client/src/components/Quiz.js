@@ -27,6 +27,11 @@ export default function Quiz(props) {
                 setLoading(false);
             }
         }
+
+        (function resetCurrentQuiz() {
+            dispatch(resetCurrentAnswers())
+        })()
+
         getQuiz();
     }, [quizId])
 
@@ -44,10 +49,12 @@ export default function Quiz(props) {
 
     const handleReset = (e) => {
         e.preventDefault();
+        setAnswers({});
         dispatch(resetCurrentAnswers())
     }
 
     const updateAnswers = (e) => {
+        // setSubmitted(false);
         setAnswers({...answers, [e.target.name]: e.target.value})
     }
 
@@ -57,8 +64,6 @@ export default function Quiz(props) {
         <div className="quiz-page">
             <div className="quiz-container">
                 <h1 className="quiz-name"> {quizName} </h1>
-                {/* {taken ? <h3 className="quiz-score"> {`Your Score is ${taken.score}%`}</h3> : <div className="quiz-score"/>} */}
-
                 {taken && <h3 className={"quiz-score"}> {`Your Score is ${taken.score}%` }</h3>}
                 <form>
                     {quizData.map(q => {
@@ -82,7 +87,7 @@ export default function Quiz(props) {
                                                 <input  onChange={updateAnswers} type="radio" name={q.question.id}
                                                         disabled={taken}
                                                         value={a.id} style={{"marginLeft": "10px"}}
-                                                        checked={ answers[q.question.id] == a.id}
+                                                        checked={answers[q.question.id] == a.id}
                                                 />
                                                 <div style={{"marginLeft": "10px"}}>{a.content} </div>
                                             </div>)}

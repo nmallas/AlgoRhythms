@@ -14,7 +14,7 @@ with app.app_context():
                 hashedPassword=sha256_crypt.hash("password"))
 
     jsTrivia = Quiz(userId=1,
-                    category="jstrivia",
+                    category="jsTrivia",
                     name="JavaScipt Trivia 1")
 
     question1 = Question(quizId=1,
@@ -73,7 +73,7 @@ with app.app_context():
 
 
     jsTrivia2 = Quiz(userId=1,
-                    category="jstrivia",
+                    category="jsTrivia",
                     name="JavaScipt Trivia 2")
 
 

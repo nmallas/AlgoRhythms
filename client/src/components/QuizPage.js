@@ -22,6 +22,7 @@ const QuizPage = function(props) {
     console.log(quizzes)
     return loading ? null : (
         <div className="quizzes">
+            <h1 className="quizpage-title"> Available Quizzes</h1>
             <div className="quiz">
                 <div> Name: </div>
                 <div> Category: </div>
@@ -29,8 +30,8 @@ const QuizPage = function(props) {
             </div>
             {
                 quizzes.map(quiz => (
-                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id}>
-                        <div className="quiz" key={quiz.id}>
+                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink">
+                        <div className="quiz quizdiv" key={quiz.id}>
                             <div>{quiz.name}</div>
                             <div>{quiz.category}</div>
                             <div>{quiz.username}</div>

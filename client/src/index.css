@@ -217,7 +217,7 @@ input:focus {
 .quizzes {
     min-width: 100vw;
     min-height: 100vh;
-    background-color: darkgray;
+    background-color: #040F15;
 }
 
 .quiz-page {
@@ -228,17 +228,40 @@ input:focus {
 .quiz-name {
     padding-top: 20px;
     text-align: center;
-    /* margin-top: 20px; */
     background-color: transparent;
     border-bottom: 1px solid black;
 }
 
 .quiz {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     display: flex;
     justify-content: space-around;
     padding: 20px 0;
-    /* background-color: lightgreen; */
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 18px;
+
+}
+
+.quizpage-title {
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    padding: 20px 0;
+}
+
+.quizdiv {
+    background-color:  #ed6663;
+}
+
+.quizdiv:hover {
+    background-color: #ffa372;
+}
+
+.quizlink {
+    text-decoration: none;
 }
 
 .quiz div {
@@ -329,7 +352,7 @@ input:focus {
 .quiz-score {
     text-align: center;
     background-color: #3fd342;
-    padding: 5px 0;
+    padding: 10px 0;
 }
 
 /* Quizzes */
