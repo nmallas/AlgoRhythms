@@ -39,6 +39,11 @@ const QuizPage = function(props) {
                     </Link>
                 ))
             }
+            <div className="quiz-create-button-container">
+                <Link to="/quizzes/create" className="quiz-create-link">
+                    <button type="button" className="quiz-create-button">Create a New Quiz</button>
+                </Link>
+            </div>
         </div>
     )
 }

@@ -84,7 +84,7 @@
     margin-top: 3%;
 }
 
-input:-webkit-autofill {
+.auth-form-input:-webkit-autofill {
     box-shadow: 0 0 0 1000px #333333 inset !important;
     /*use inset box-shadow to cover background-color*/
     -webkit-text-fill-color: white !important;
@@ -92,7 +92,7 @@ input:-webkit-autofill {
     font-size: 16px !important;
 }
 
-input:focus {
+.auth-form-input:focus {
     outline: none;
     background-color: #494949;
 }
@@ -354,5 +354,47 @@ input:focus {
     background-color: #3fd342;
     padding: 10px 0;
 }
+
+.quiz-create-button {
+    padding: 15px;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    background-color: #848DCF;
+    margin-top: 30px;
+}
+
+.quiz-create-button:hover {
+    background-color: #93b5e1;
+    cursor: pointer;
+}
+
+.quiz-create-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-create-link {
+    width: 50%;
+}
+
+.create-quiz-question-container {
+    display: flex;
+    padding: 20px;
+}
+
+.create-quiz-question-label {
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.create-quiz-question {
+    width: 75%;
+    font-size: 16px;
+}
+
 
 /* Quizzes */

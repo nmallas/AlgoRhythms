@@ -10,6 +10,7 @@ import Visuals from './components/Visuals';
 import QuizPage from "./components/QuizPage"
 import Quiz from './components/Quiz';
 import Navbar from './components/Navbar';
+import CreateQuiz from './components/CreateQuiz';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                     <ProtectedRoute path="/visuals" component={Visuals}/>
                     <ProtectedRoute exact path="/" component={Home}/>
                     <ProtectedRoute exact path="/quizzes" component={QuizPage}/>
+                    <ProtectedRoute exact path="/quizzes/create" component={CreateQuiz}/>
                     <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>
                 </Switch>
         </BrowserRouter>
