@@ -28,11 +28,19 @@ export default function CreateQuiz() {
         let updatedQuestions = questions.slice(0);
         updatedQuestions[currentQuestionId] = currentQuestionContent;
         setQuestions(updatedQuestions);
-        setCurrentQuestionId(-1);
+        setCurrentQuestionId(i+1);
+        let oldAnswerChoices = {...answerChoices};
+        oldAnswerChoices[i] = [];
+        setAnswerChoices(oldAnswerChoices);
     }
 
-    console.log(currentQuestionContent);
-    console.log(currentAnswerChoice);
+    const addQuestion = (i) => {
+        setCurrentQuestionContent("");
+        setQuestions([...questions, ""])
+    }
+
+    console.log(answerChoices);
+    console.log(currentQuestionId);
     return (
         <div className="create-quiz">
             {questions.map((q, i) => {
@@ -46,24 +54,28 @@ export default function CreateQuiz() {
                                     <textarea  className="create-quiz-question"
                                         placeholder={"write question here"} value={currentQuestionContent}
                                         name={i} onChange={updateInput}/>
-                                    <button onClick={setQuestion} className="create-quiz-question-button">Set Question</button>
+                                    <button onClick={() => setQuestion(i)} className="create-quiz-question-button">Set Question</button>
                                 </>
                             }
 
                         </div>
-                        <ol className="answer-choice-list">
-                            {answerChoices[i].map((ac, j)=> (
-                                <li> {ac} </li>
-                            ))}
-                            <li>
-                                <input className="new-answer-choice" onChange={(e) => setCurrentAnswerChoice(e.target.value)} value={currentAnswerChoice}/>
-                                <button type="button" className="add-answer-choice" onClick={() => addAnswerChoice(i)}> Add Answer Choice</button>
-                            </li>
-                        </ol>
-                        <button type="button" className="another-question"> Add Another Question </button>
+                        {!questions[i] ? null :
+                            <ol className="answer-choice-list">
+                                {answerChoices[i].map((ac, j)=> (
+                                    <li> {ac} </li>
+                                ))}
+                                <li>
+                                    <input className="new-answer-choice" onChange={(e) => setCurrentAnswerChoice(e.target.value)} value={currentAnswerChoice}/>
+                                    <button type="button" className="add-answer-choice" onClick={() => addAnswerChoice(i)}> Add Answer Choice</button>
+                                </li>
+                            </ol>
+                        }
                     </>
                     )
             })}
+            {!answerChoices[currentQuestionId -1]?.length ? null :
+                <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
+            }
         </div>
     )
 }
