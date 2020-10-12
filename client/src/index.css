@@ -384,6 +384,7 @@
 .create-quiz-question-container {
     display: flex;
     padding: 20px;
+    align-items: center;
 }
 
 .create-quiz-question-label {
@@ -393,7 +394,17 @@
 
 .create-quiz-question {
     width: 75%;
-    font-size: 16px;
+    font-size: 15px;
+    height: 45px;
+}
+
+.answer-choice-list {
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+.answer-choice-list input {
+    width: 75%;
 }
 
 
