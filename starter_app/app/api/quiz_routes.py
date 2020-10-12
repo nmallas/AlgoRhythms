@@ -37,6 +37,7 @@ def submit():
     answers = [(k, v) for k, v in data["answers"].items()]
     incorrect = []
     correctAnswers = []
+    correctChoices = []
     print(data, answers)
     for answer in answers:
         correctAnswer = AnswerJoin.query.filter(AnswerJoin.questionId == int(answer[0])).first().answerChoiceId
@@ -44,6 +45,8 @@ def submit():
         print(correctAnswer, answer[1])
         if int(answer[1]) != correctAnswer:
             incorrect.append(answer[1])
+        else:
+            correctChoices.append(answer[1])
     newSubmission = Submission(userId=data["userId"],
                                 quizId=data["quizId"],
                                 score=int(((len(answers) - len(incorrect))/len(answers)) * 100))
@@ -54,4 +57,5 @@ def submit():
         wrongAnswer = IncorrectAnswers(submissionId=submission.id, answerChoiceId=answerChoice)
         db.session.add(wrongAnswer)
     db.session.commit()
-    return {"quizId": int(data["quizId"]), "latest": {"score": submission.score, "incorrectChoices": incorrect, "correctAnswers": correctAnswers}}
+    return  {"quizId": int(data["quizId"]), "current":
+            {"score": submission.score, "incorrectChoices": incorrect, "correctChoices": correctChoices, "correctAnswers": correctAnswers}}

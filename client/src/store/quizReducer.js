@@ -1,10 +1,13 @@
-let SETCURRENT = "quiz/current/set"
+let SETCURRENT = "quiz/current/set";
+let RESETCURRENT = "quiz/current/reset";
 
 
 export default function quizReducer(state={}, action) {
     switch(action.type) {
         case(SETCURRENT):
             return action.answers
+        case(RESETCURRENT):
+            return {}
         default:
             return state
     }
@@ -13,6 +16,10 @@ export default function quizReducer(state={}, action) {
 const setCurrentAnswers = (answers) => ({
     type: SETCURRENT,
     answers
+})
+
+export const resetCurrentAnswers = () => ({
+    type: RESETCURRENT
 })
 
 export const submitQuiz = ({answers, quizId, userId}) => {
