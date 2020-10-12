@@ -72,6 +72,99 @@ with app.app_context():
     answerJoin3 = AnswerJoin(questionId=3, answerChoiceId=6)
 
 
+    jsTrivia2 = Quiz(userId=1,
+                    category="jstrivia",
+                    name="JavaScipt Trivia 2")
+
+
+    quiz2_question1 = Question(quizId=2,
+                         questionType="mc",
+                         content="What is context in JavaScript")
+
+    quiz2_q1a1 = AnswerChoice(content="The value of 'this'",
+                        order=1,
+                        questionId=4)
+
+    quiz2_q1a2 = AnswerChoice(content="The file that is currently running",
+                        order=2,
+                        questionId=4)
+
+    quiz2_q1a3 = AnswerChoice(content="The identifier used to declare a variable (let/var/const)",
+                        order=3,
+                        questionId=4)
+
+    quiz2_answerJoin1 = AnswerJoin(questionId=4, answerChoiceId=10)
+
+
+    quiz2_question2 = Question(quizId=2,
+                         questionType="mc",
+                         content="Which HTTP method is typically used to submit form data?")
+
+    quiz2_q2a1 = AnswerChoice(content="GET",
+                        order=1,
+                        questionId=5)
+
+    quiz2_q2a2 = AnswerChoice(content="DELETE",
+                        order=2,
+                        questionId=5)
+
+    quiz2_q2a3 = AnswerChoice(content="POST",
+                        order=3,
+                        questionId=5)
+
+    quiz2_q2a4 = AnswerChoice(content="HEAD",
+                        order=4,
+                        questionId=5)
+
+    quiz2_answerJoin2 = AnswerJoin(questionId=5, answerChoiceId=15)
+
+    quiz2_question3 = Question(quizId=2,
+                         questionType="mc",
+                         content="Which method CANNOT be used in JavaScript to handle asyncronous code?")
+
+    quiz2_q3a1 = AnswerChoice(content="async/await",
+                        order=1,
+                        questionId=6)
+
+    quiz2_q3a2 = AnswerChoice(content="sleep()",
+                        order=2,
+                        questionId=6)
+
+    quiz2_q3a3 = AnswerChoice(content="then()",
+                        order=3,
+                        questionId=6)
+
+    quiz2_answerJoin3 = AnswerJoin(questionId=6, answerChoiceId=18)
+
+
+    quiz2_question4 = Question(quizId=2,
+                         questionType="mc",
+                         content="Which of the following values is truthy in JavaScript")
+
+    quiz2_q4a1 = AnswerChoice(content='""',
+                        order=1,
+                        questionId=7)
+
+    quiz2_q4a2 = AnswerChoice(content="null",
+                        order=2,
+                        questionId=7)
+
+    quiz2_q4a3 = AnswerChoice(content="undefined",
+                        order=3,
+                        questionId=7)
+
+    quiz2_q4a4 = AnswerChoice(content="'false'",
+                        order=4,
+                        questionId=7)
+
+    quiz2_q4a5 = AnswerChoice(content="NAN",
+                        order=5,
+                        questionId=7)
+
+    quiz2_answerJoin4 = AnswerJoin(questionId=7, answerChoiceId=23)
+
+
+
 
     db.session.add(demo)
     db.session.add(jsTrivia)
@@ -90,6 +183,33 @@ with app.app_context():
     db.session.add(q3a3)
     db.session.add(q3a4)
     db.session.add(answerJoin3)
+
+    db.session.add(jsTrivia2)
+    db.session.add(quiz2_question1)
+    db.session.add(quiz2_q1a1)
+    db.session.add(quiz2_q1a2)
+    db.session.add(quiz2_q1a3)
+    db.session.add(quiz2_answerJoin1)
+    db.session.add(quiz2_question2)
+    db.session.add(quiz2_q2a1)
+    db.session.add(quiz2_q2a2)
+    db.session.add(quiz2_q2a3)
+    db.session.add(quiz2_q2a4)
+    db.session.add(quiz2_answerJoin2)
+    db.session.add(quiz2_question3)
+    db.session.add(quiz2_q3a1)
+    db.session.add(quiz2_q3a2)
+    db.session.add(quiz2_q3a3)
+    db.session.add(quiz2_answerJoin3)
+    db.session.add(quiz2_question4)
+    db.session.add(quiz2_q4a1)
+    db.session.add(quiz2_q4a2)
+    db.session.add(quiz2_q4a3)
+    db.session.add(quiz2_q4a4)
+    db.session.add(quiz2_q4a5)
+    db.session.add(quiz2_answerJoin4)
+
+
 
 
 

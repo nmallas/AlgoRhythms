@@ -215,6 +215,9 @@ input:focus {
 /* Quizzes */
 
 .quizzes {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: darkgray;
 }
 
 .quiz-page {
@@ -234,8 +237,13 @@ input:focus {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    background-color: lightgreen;
+    padding: 20px 0;
+    /* background-color: lightgreen; */
+}
+
+.quiz div {
+    width: 100%;
+    text-align: center;
 }
 
 .mc-answers {
