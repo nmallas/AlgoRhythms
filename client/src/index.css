@@ -381,9 +381,16 @@
     width: 50%;
 }
 
+.create-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .create-quiz-question-container {
     display: flex;
     padding: 20px;
+    width: 100%;
     align-items: center;
 }
 
@@ -393,7 +400,7 @@
 }
 
 .create-quiz-question {
-    width: 75%;
+    width: 70%;
     font-size: 15px;
     height: 45px;
 }
@@ -401,11 +408,51 @@
 .answer-choice-list {
     margin-left: 5%;
     margin-top: 10px;
+    width: 100%;
 }
 
 .answer-choice-list input {
-    width: 75%;
+    width: 70%;
 }
 
+.add-answer-choice {
+    color: white;
+    background-color: #3fd342;
+    border: none;
+    padding: 6px;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.new-answer-choice {
+    padding: 5px;
+}
+
+.another-question {
+    color: white;
+    margin-top: 20px;
+    background-color: #4e89ae;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.create-quiz-question-button {
+    height: 45px;
+    background-color: #3fd342;
+    color: white;
+    font-size: 16px;
+    border: 1px solid white;
+}
+
+.create-quiz-question-button:hover,  .add-answer-choice:hover {
+    background-color: #2d972e;
+    cursor: pointer;
+}
+
+.another-question:hover {
+    background-color: #43658b;
+    cursor: pointer;
+}
 
 /* Quizzes */
