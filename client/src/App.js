@@ -25,11 +25,11 @@ function App() {
 
     const userId = useSelector(state => state.auth.id);
 
-    const ProtectedRoute = function({path, exact, component}) {
+    const ProtectedRoute = function({path, exact, component, render}) {
         return (userId) ? (
             <>
                 <Navbar/>
-                <Route exact={exact} path={path} component={component}/>
+                <Route exact={exact} path={path} render={render} component={component}/>
             </>
         ) : <Redirect to="/login"/>
     }
@@ -43,7 +43,7 @@ function App() {
                     <Route path="/signup" component={SignUp}/>
                     <ProtectedRoute path="/visuals" component={Visuals}/>
                     <ProtectedRoute exact path="/" component={Home}/>
-                    <ProtectedRoute exact path="/quizzes" component={QuizPage}/>
+                    <ProtectedRoute exact path="/quizzes" render={(props) => <QuizPage {...props}></QuizPage>}/>
                     <ProtectedRoute exact path="/quizzes/create" component={CreateQuiz}/>
                     <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>
                 </Switch>
