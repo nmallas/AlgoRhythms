@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function CreateQuiz() {
     let [quiz, setQuiz] = useState();
     let [questions, setQuestions] = useState([""]);
-    let [answerChoices, setAnswerChoices] = useState({0: []});
+    let [answerChoices, setAnswerChoices] = useState([]);
     let [currentAnswerChoice, setCurrentAnswerChoice] = useState("");
     let [currentQuestionContent, setCurrentQuestionContent] = useState("");
     let [currentQuestionId, setCurrentQuestionId] = useState(0)
@@ -15,7 +15,7 @@ export default function CreateQuiz() {
     const addAnswerChoice = (i) => {
         if(!currentAnswerChoice.length) return null;
 
-        let oldAnswerChoices = {...answerChoices};
+        let oldAnswerChoices = [...answerChoices];
         oldAnswerChoices[i].push(currentAnswerChoice);
         setAnswerChoices(oldAnswerChoices);
         setCurrentAnswerChoice("");
@@ -25,20 +25,27 @@ export default function CreateQuiz() {
         let updatedQuestions = questions.slice(0);
         updatedQuestions[currentQuestionId] = currentQuestionContent;
         setQuestions(updatedQuestions);
-        let oldAnswerChoices = {...answerChoices};
+        let oldAnswerChoices = [...answerChoices];
         oldAnswerChoices[i] = [];
         setAnswerChoices(oldAnswerChoices);
     }
 
-    const addQuestion = (i) => {
+    const addQuestion = () => {
         setCurrentQuestionId(currentQuestionId + 1);
         setCurrentQuestionContent("");
         setQuestions([...questions, ""])
     }
 
+    const deleteQuestion = (i) => {
+        let newQuestions = [...questions.slice(0, i), ...questions.slice(i+1)]
+        setQuestions(newQuestions);
+        let newAnswerChoices = [...answerChoices.slice(0, i), ...answerChoices.slice(i+1)];
+        setAnswerChoices(newAnswerChoices)
+        setCurrentQuestionId(currentQuestionId-1);
+    }
+
     console.log(answerChoices);
     console.log(currentQuestionId);
-    console.log(answerChoices[currentQuestionId -1])
     return (
         <div className="create-quiz">
             {questions.map((q, i) => {
@@ -48,7 +55,11 @@ export default function CreateQuiz() {
                             <div className="create-quiz-question-label"> Question {i + 1}: </div>
                             {/* If question is set display content in div, otherwise display input */}
                             { questions[i] ?
-                                <div className="set-question"> {questions[i]} </div> :
+                                <>
+                                    <div className="set-question"> {questions[i]} </div>
+                            <button className="delete-question" onClick={() => deleteQuestion(i)}>Delete Question</button>
+                                </>
+                                :
                                 <>
                                     <textarea  className="create-quiz-question"
                                         placeholder={"write question here"} value={currentQuestionContent}
