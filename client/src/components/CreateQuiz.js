@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function CreateQuiz() {
-    let [quiz, setQuiz] = useState();
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
     let [answers, setAnswers] = useState([]);
@@ -51,6 +50,18 @@ export default function CreateQuiz() {
         setAnswers(allAnswers);
     }
 
+    const createNewQuiz = async () => {
+        let res = await fetch("/api/quizzes", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({questions, answers, answerChoices})
+        })
+        if(res.ok) {
+            let data = await res.json();
+            console.log(data);
+        }
+    }
+
     console.log(answerChoices);
     console.log(currentQuestionId);
     console.log(answers);
@@ -61,15 +72,18 @@ export default function CreateQuiz() {
                     return (
                         <>
                             <div className="create-quiz-question-container">
-                                <div className="create-quiz-question-label"> Question {i + 1}: </div>
-                                {/* If question is set display content in div, otherwise display input */}
+                                {/* If question is set, display content in div, otherwise display input */}
                                 { questions[i] ?
                                     <>
-                                        <div className="set-question"> {questions[i]} </div>
-                                <button className="delete-question" onClick={() => deleteQuestion(i)}>Delete Question</button>
+                                        <div style={{display: "flex", alignItems: "center"}}>
+                                            <div className="create-quiz-question-label"> Question {i + 1}: </div>
+                                            <div className="set-question"> {questions[i]} </div>
+                                        </div>
+                                        <button className="delete-question" onClick={() => deleteQuestion(i)}>Delete Question</button>
                                     </>
                                     :
                                     <>
+                                        <div className="create-quiz-question-label"> Question {i + 1}: </div>
                                         <textarea  className="create-quiz-question"
                                             placeholder={"write question here"} value={currentQuestionContent}
                                             name={i} onChange={updateInput}/>
@@ -101,7 +115,10 @@ export default function CreateQuiz() {
                 })}
                 {/* Ensure there is at least one answer choice and answer for the previous question */}
                 {(!answerChoices[currentQuestionId]?.length || !answers[currentQuestionId]) ? null :
-                    <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
+                    <div className="create-quiz-form-buttons">
+                        <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
+                        <button type="button" className="create-new-quiz" onClick={createNewQuiz}> Create Quiz </button>
+                    </div>
                 }
             </div>
         </div>
