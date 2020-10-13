@@ -222,7 +222,10 @@
 
 .quiz-page {
     min-height: 100vh;
+    max-height: max-content;
+    min-width: 100vw;
     background-color: rgb(227, 244, 255);
+    position: absolute;
 }
 
 .quiz-name {
@@ -293,11 +296,8 @@
 }
 
 .quiz-container {
-    margin-left: 10%;
-    margin-right: 10%;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    margin: 5% 10%;
+    border: 1px solid black;
     font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
     background-color: white;
     padding-left: 25px;
@@ -400,7 +400,7 @@
 }
 
 .create-quiz-question {
-    width: 70%;
+    width: 65%;
     font-size: 15px;
     height: 45px;
 }
@@ -457,6 +457,25 @@
 
 .disabled {
     background-color: gray;
+}
+
+.current-answer {
+    display: flex;
+    background-color:lightblue;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px 0;
+}
+
+.answer-choice {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px 0;
+}
+
+.add-answer-choice-li {
+    margin: 10px 0;
 }
 
 /* Quizzes */

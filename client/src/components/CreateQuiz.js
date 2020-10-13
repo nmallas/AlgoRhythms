@@ -4,6 +4,7 @@ export default function CreateQuiz() {
     let [quiz, setQuiz] = useState();
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
+    let [answers, setAnswers] = useState([]);
     let [currentAnswerChoice, setCurrentAnswerChoice] = useState("");
     let [currentQuestionContent, setCurrentQuestionContent] = useState("");
     let [currentQuestionId, setCurrentQuestionId] = useState(0)
@@ -44,53 +45,65 @@ export default function CreateQuiz() {
         setCurrentQuestionId(currentQuestionId-1);
     }
 
+    const addAnswer = (i, j) => {
+        let allAnswers = [...answers];
+        allAnswers[i] = String(j)
+        setAnswers(allAnswers);
+    }
+
     console.log(answerChoices);
     console.log(currentQuestionId);
+    console.log(answers);
     return (
-        <div className="create-quiz">
-            {questions.map((q, i) => {
-                return (
-                    <>
-                        <div className="create-quiz-question-container">
-                            <div className="create-quiz-question-label"> Question {i + 1}: </div>
-                            {/* If question is set display content in div, otherwise display input */}
-                            { questions[i] ?
-                                <>
-                                    <div className="set-question"> {questions[i]} </div>
-                            <button className="delete-question" onClick={() => deleteQuestion(i)}>Delete Question</button>
-                                </>
-                                :
-                                <>
-                                    <textarea  className="create-quiz-question"
-                                        placeholder={"write question here"} value={currentQuestionContent}
-                                        name={i} onChange={updateInput}/>
-                                    <button onClick={() => setQuestion(i)} className="create-quiz-question-button">Set Question</button>
-                                </>
-                            }
-
-                        </div>
-                        {/* Only display answerChoices after question is written */}
-                        {!questions[i] ? null :
-                            <ol className="answer-choice-list">
-                                {answerChoices[i].map((ac, j)=> (
-                                    <li> {ac} </li>
-                                ))}
-                                {/* Only allow answer choices to be added to current question  */}
-                                { currentQuestionId !== i ? null :
-                                <li >
-                                    <input className="new-answer-choice" onChange={(e) => setCurrentAnswerChoice(e.target.value)} value={currentAnswerChoice}/>
-                                    <button type="button" className="add-answer-choice" onClick={() => addAnswerChoice(i)}> Add Answer Choice</button>
-                                </li>
+        <div className="quiz-page">
+            <div className="quiz-container">
+                {questions.map((q, i) => {
+                    return (
+                        <>
+                            <div className="create-quiz-question-container">
+                                <div className="create-quiz-question-label"> Question {i + 1}: </div>
+                                {/* If question is set display content in div, otherwise display input */}
+                                { questions[i] ?
+                                    <>
+                                        <div className="set-question"> {questions[i]} </div>
+                                <button className="delete-question" onClick={() => deleteQuestion(i)}>Delete Question</button>
+                                    </>
+                                    :
+                                    <>
+                                        <textarea  className="create-quiz-question"
+                                            placeholder={"write question here"} value={currentQuestionContent}
+                                            name={i} onChange={updateInput}/>
+                                        <button onClick={() => setQuestion(i)} className="create-quiz-question-button">Set Question</button>
+                                    </>
                                 }
-                            </ol>
-                        }
-                    </>
-                    )
-            })}
-            {/* Ensure there is at least one answer choice for the previous question */}
-            {!answerChoices[currentQuestionId]?.length ? null :
-                <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
-            }
+
+                            </div>
+                            {/* Only display answerChoices after question is written */}
+                            {!questions[i] ? null :
+                                <ol className="answer-choice-list">
+                                    {answerChoices[i].map((ac, j)=> (
+                                        <div className={answers[i] === String(j)? "current-answer" : "answer-choice"}>
+                                            <li> {ac} </li>
+                                            <button type="button" onClick={() => addAnswer(i, j)}> Set as Answer</button>
+                                        </div>
+                                    ))}
+                                    {/* Only allow answer choices to be added to current question  */}
+                                    { currentQuestionId !== i ? null :
+                                    <li className="add-answer-choice-li">
+                                        <input className="new-answer-choice" onChange={(e) => setCurrentAnswerChoice(e.target.value)} value={currentAnswerChoice}/>
+                                        <button type="button" className="add-answer-choice" onClick={() => addAnswerChoice(i)}> Add Answer Choice</button>
+                                    </li>
+                                    }
+                                </ol>
+                            }
+                        </>
+                        )
+                })}
+                {/* Ensure there is at least one answer choice and answer for the previous question */}
+                {(!answerChoices[currentQuestionId]?.length || !answers[currentQuestionId]) ? null :
+                    <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
+                }
+            </div>
         </div>
     )
 }
