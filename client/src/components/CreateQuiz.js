@@ -9,9 +9,6 @@ export default function CreateQuiz() {
     let [currentQuestionId, setCurrentQuestionId] = useState(0)
 
     const updateInput = (e) => {
-        // let updatedQuestions = questions.slice(0);
-        // updatedQuestions[e.target.name] = e.target.value;
-        // setQuestions(updatedQuestions);
         setCurrentQuestionContent(e.target.value);
     }
 
@@ -28,19 +25,20 @@ export default function CreateQuiz() {
         let updatedQuestions = questions.slice(0);
         updatedQuestions[currentQuestionId] = currentQuestionContent;
         setQuestions(updatedQuestions);
-        setCurrentQuestionId(i+1);
         let oldAnswerChoices = {...answerChoices};
         oldAnswerChoices[i] = [];
         setAnswerChoices(oldAnswerChoices);
     }
 
     const addQuestion = (i) => {
+        setCurrentQuestionId(currentQuestionId + 1);
         setCurrentQuestionContent("");
         setQuestions([...questions, ""])
     }
 
     console.log(answerChoices);
     console.log(currentQuestionId);
+    console.log(answerChoices[currentQuestionId -1])
     return (
         <div className="create-quiz">
             {questions.map((q, i) => {
@@ -48,7 +46,8 @@ export default function CreateQuiz() {
                     <>
                         <div className="create-quiz-question-container">
                             <div className="create-quiz-question-label"> Question {i + 1}: </div>
-                            { i !== currentQuestionId ?
+                            {/* If question is set display content in div, otherwise display input */}
+                            { questions[i] ?
                                 <div className="set-question"> {questions[i]} </div> :
                                 <>
                                     <textarea  className="create-quiz-question"
@@ -59,21 +58,26 @@ export default function CreateQuiz() {
                             }
 
                         </div>
+                        {/* Only display answerChoices after question is written */}
                         {!questions[i] ? null :
                             <ol className="answer-choice-list">
                                 {answerChoices[i].map((ac, j)=> (
                                     <li> {ac} </li>
                                 ))}
-                                <li>
+                                {/* Only allow answer choices to be added to current question  */}
+                                { currentQuestionId !== i ? null :
+                                <li >
                                     <input className="new-answer-choice" onChange={(e) => setCurrentAnswerChoice(e.target.value)} value={currentAnswerChoice}/>
                                     <button type="button" className="add-answer-choice" onClick={() => addAnswerChoice(i)}> Add Answer Choice</button>
                                 </li>
+                                }
                             </ol>
                         }
                     </>
                     )
             })}
-            {!answerChoices[currentQuestionId -1]?.length ? null :
+            {/* Ensure there is at least one answer choice for the previous question */}
+            {!answerChoices[currentQuestionId]?.length ? null :
                 <button type="button" className="another-question"onClick={addQuestion}> Add Another Question </button>
             }
         </div>
