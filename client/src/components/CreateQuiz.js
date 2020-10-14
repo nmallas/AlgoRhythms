@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function CreateQuiz() {
+    let [quizName, setQuizName] = useState("");
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
     let [answers, setAnswers] = useState([]);
     let [currentAnswerChoice, setCurrentAnswerChoice] = useState("");
     let [currentQuestionContent, setCurrentQuestionContent] = useState("");
-    let [currentQuestionId, setCurrentQuestionId] = useState(0)
+    let [currentQuestionId, setCurrentQuestionId] = useState(0);
+    let [currentQuizName, setCurrentQuizName] = useState("");
+    let userId = useSelector(state => state.auth.id);
 
     const updateInput = (e) => {
         setCurrentQuestionContent(e.target.value);
@@ -51,10 +55,10 @@ export default function CreateQuiz() {
     }
 
     const createNewQuiz = async () => {
-        let res = await fetch("/api/quizzes", {
+        let res = await fetch("/api/quizzes/", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({questions, answers, answerChoices})
+            body: JSON.stringify({questions, answers, answerChoices, quizName, userId})
         })
         if(res.ok) {
             let data = await res.json();
@@ -70,8 +74,18 @@ export default function CreateQuiz() {
             <div className="quiz-container">
                 {questions.map((q, i) => {
                     return (
+                        // Require Quiz Name
+                        !quizName ?
+                            <div>
+                                <input value={currentQuizName} onChange={(e)=> setCurrentQuizName(e.target.value)}/>
+                                <button onClick={()=> setQuizName(currentQuizName)}> Set Quiz Name</button>
+                            </div>
+                        :
+
                         <>
+                            <h1 className="quiz-name"> {quizName} </h1>
                             <div className="create-quiz-question-container">
+
                                 {/* If question is set, display content in div, otherwise display input */}
                                 { questions[i] ?
                                     <>

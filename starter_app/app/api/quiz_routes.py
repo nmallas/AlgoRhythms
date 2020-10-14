@@ -15,6 +15,15 @@ def get_all():
     print(quizinfo)
     return {"quizzes": quizinfo}
 
+
+@quiz_routes.route("/", methods=["POST"])
+def create_new():
+    data = request.json
+    print(data)
+    newQuiz = Quiz(userId=data["userId"], category="jsTrivia", name=data["quizName"])
+    
+
+
 @quiz_routes.route("/<int:id>")
 def get_one(id):
     quiz = Quiz.query.filter(Quiz.id == int(id)).first()
