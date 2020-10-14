@@ -72,6 +72,7 @@ export default function CreateQuiz() {
     return (
         <div className="quiz-page">
             <div className="quiz-container">
+                {quizName ? <h1 className="quiz-name"> {quizName} </h1> : ""}
                 {questions.map((q, i) => {
                     return (
                         // Require Quiz Name
@@ -83,7 +84,7 @@ export default function CreateQuiz() {
                         :
 
                         <>
-                            <h1 className="quiz-name"> {quizName} </h1>
+
                             <div className="create-quiz-question-container">
 
                                 {/* If question is set, display content in div, otherwise display input */}
