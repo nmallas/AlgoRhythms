@@ -239,8 +239,10 @@
     /* margin-top: 20px; */
     display: flex;
     justify-content: space-around;
+    width: 80%;
+    margin: auto;
     padding: 20px 0;
-    border-bottom: 1px solid white;
+    border: 1px solid white;
     color: white;
     font-size: 18px;
 
@@ -505,6 +507,34 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+}
+
+.quiz-name-and-category {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+.quiz-name-and-category button {
+    background-color: #3fd342;
+    margin: 0 10px;
+    color: white;
+    font-size: 16px;
+    border: 1px solid darkgray;
+    height: 45px;
+    border-radius: 5px;
+}
+
+.quiz-name-and-category select, .quiz-name-and-category input {
+    font-size: 16px;
+    padding: 10px;
+    height: 45px;
+}
+
+.category {
+    margin: auto 10px;
+    font-size: 20px;
 }
 
 /* Quizzes */

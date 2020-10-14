@@ -23,7 +23,7 @@ def create_new():
     previousQuiz = Quiz.query.filter(Quiz.name == data["quizName"]).first()
     if previousQuiz:
         return {"error": "A Quiz with that name already exists"}
-    newQuiz = Quiz(userId=data["userId"], category="jsTrivia", name=data["quizName"])
+    newQuiz = Quiz(userId=data["userId"], category=data["category"], name=data["quizName"])
     db.session.add(newQuiz)
     db.session.commit()
     quizId = Quiz.query.filter(Quiz.name == data["quizName"]).order_by(Quiz.id.desc()).first().id
