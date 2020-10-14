@@ -222,7 +222,10 @@
 
 .quiz-page {
     min-height: 100vh;
+    max-height: max-content;
+    min-width: 100vw;
     background-color: rgb(227, 244, 255);
+    position: absolute;
 }
 
 .quiz-name {
@@ -293,11 +296,8 @@
 }
 
 .quiz-container {
-    margin-left: 10%;
-    margin-right: 10%;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    margin: 5% 10%;
+    border: 1px solid black;
     font-family: Garamond, "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
     background-color: white;
     padding-left: 25px;
@@ -389,18 +389,20 @@
 
 .create-quiz-question-container {
     display: flex;
-    padding: 20px;
-    width: 100%;
+    padding: 20px 0;
+    margin: 0 auto;
+    width: 90%;
     align-items: center;
+    justify-content: space-between;
 }
 
 .create-quiz-question-label {
     margin-right: 15px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .create-quiz-question {
-    width: 70%;
+    width: 65%;
     font-size: 15px;
     height: 45px;
 }
@@ -424,14 +426,34 @@
     font-size: 15px;
 }
 
+.set-question {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Times New Roman", serif;
+}
+
 .new-answer-choice {
     padding: 5px;
 }
 
 .another-question {
     color: white;
-    margin-top: 20px;
+    margin: 10px 40%;
     background-color: #4e89ae;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.create-quiz-form-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-new-quiz {
+    color: white;
+    margin: 10px 40%;
+    background-color: #FFA372;
     border: none;
     padding: 10px;
     font-size: 16px;
@@ -457,6 +479,32 @@
 
 .disabled {
     background-color: gray;
+}
+
+.current-answer {
+    display: flex;
+    background-color:lightblue;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px 0;
+}
+
+.current-answer button {
+    display: none;
+}
+
+.answer-choice {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px 0;
+}
+
+.add-answer-choice-li {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
 /* Quizzes */

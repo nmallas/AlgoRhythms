@@ -8,7 +8,7 @@ const QuizPage = function(props) {
 
     useEffect(()=> {
         async function getQuizzes() {
-            let res = await fetch("/api/quizzes");
+            let res = await fetch("/api/quizzes/");
             if(res.ok) {
                 let data = await res.json();
                 console.log(data)

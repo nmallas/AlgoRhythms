@@ -15,8 +15,8 @@
 4. Add any Config Vars to your heroku app, either on the Heroku CLI, or on the heroku-app dashboard's Settings tab.
 
 ### Prepping Your React App:
-1. Run `npm run build` in your React app root folder. 
-    * This will build the static files for your React app. 
+1. Run `npm run build` in your React app root folder.
+    * This will build the static files for your React app.
     * The `postbuild` script from your `package.json` will _automatically_ move them into the `/static` directory in your flask files.
 
 
@@ -29,7 +29,8 @@
 
 1. Login to heroku: `$ heroku login`
 2. Login to the heroku container registry: `$ heroku container:login`
-3. CD into `starter_app` and push your `Dockerfile` to heroku (this will build the Flask Dockerfile, and push): `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
+3. CD into `starter_app` and push your `Dockerfile` to heroku (this will build the Flask Dockerfile, and push): `$ heroku container:push web -a {NAME_OF_HEROKU_APP}` -- (heroku container:push web -a algorhythms-app)
 5. Release your docker container to heroku: `$ heroku container:release web -a {NAME_OF_HEROKU_APP}`
+    -- (heroku container:release web -a algorhythms-app)
 6. Set up your database: `heroku run -a {NAME_OF_HEROKU_APP} {your_migration_script_here}`
 7. Profit.
