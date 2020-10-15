@@ -33,7 +33,7 @@ export default function Quiz(props) {
         })()
 
         getQuiz();
-    }, [quizId])
+    }, [quizId, dispatch])
 
     const handleClick = async (e) => {
         e.preventDefault();

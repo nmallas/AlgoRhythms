@@ -5,6 +5,7 @@ const QuizPage = function(props) {
 
     const [quizzes, setQuizzes] = useState("");
     const [loading, setLoading] = useState(true);
+    const [pageNum, setPageNum] = useState(0);
 
     useEffect(()=> {
         async function getQuizzes() {
@@ -19,6 +20,11 @@ const QuizPage = function(props) {
         getQuizzes()
     }, [])
 
+    const changePage = (num) => {
+        if((pageNum + num) < 0 || ((pageNum * 5) > quizzes.length)) return;
+        setPageNum(pageNum + num);
+    }
+
     return loading ? null : (
         <div className="quizzes">
             <h1 className="quizpage-title"> Available Quizzes</h1>
@@ -28,8 +34,8 @@ const QuizPage = function(props) {
                 <div> Username: </div>
             </div>
             {
-                quizzes.map(quiz => (
-                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink">
+                quizzes.slice((pageNum * 5), (pageNum + 1) * 5 ).map(quiz => (
+                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" key={quiz.name}>
                         <div className="quiz quizdiv" key={quiz.id}>
                             <div>{quiz.name}</div>
                             <div>{quiz.category}</div>
@@ -38,6 +44,11 @@ const QuizPage = function(props) {
                     </Link>
                 ))
             }
+            <div className="pageNumbers">
+                <div onClick={() => changePage(-1)} className="page-change"> Previous </div>
+                <div>{`${pageNum * 5 +1} - ${Math.min((pageNum +1) * 5, quizzes.length)}  of  ${quizzes.length}`}</div>
+                <div onClick={() => changePage(+1)} className="page-change"> Next </div>
+            </div>
             <div className="quiz-create-button-container">
                 <Link to="/quizzes/create" className="quiz-create-link">
                     <button type="button" className="quiz-create-button">Create a New Quiz</button>

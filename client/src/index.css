@@ -491,6 +491,27 @@
     margin: 5px 0;
 }
 
+.pageNumbers {
+    width: 80%;
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pageNumbers div {
+    margin: 10px;
+}
+
+.page-change {
+    text-decoration: underline;
+}
+
+.page-change:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 .current-answer button {
     display: none;
 }

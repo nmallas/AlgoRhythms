@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-export default function CreateQuiz() {
+export default function CreateQuiz(props) {
     let [quizName, setQuizName] = useState("");
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
@@ -63,7 +64,7 @@ export default function CreateQuiz() {
         })
         if(res.ok) {
             let data = await res.json();
-            console.log(data);
+            props.history.push('/quizzes/')
         }
     }
 
@@ -98,7 +99,7 @@ export default function CreateQuiz() {
                                 {/* If question is set, display content in div, otherwise display input */}
                                 { questions[i] ?
                                     <>
-                                        <div style={{display: "flex", alignItems: "center"}}>
+                                        <div style={{display: "flex", alignItems: "center"}} key={q}>
                                             <div className="create-quiz-question-label"> Question {i + 1}: </div>
                                             <div className="set-question"> {questions[i]} </div>
                                         </div>
@@ -106,7 +107,7 @@ export default function CreateQuiz() {
                                     </>
                                     :
                                     <>
-                                        <div className="create-quiz-question-label"> Question {i + 1}: </div>
+                                        <div className="create-quiz-question-label" key={q}> Question {i + 1}: </div>
                                         <textarea  className="create-quiz-question"
                                             placeholder={"write question here"} value={currentQuestionContent}
                                             name={i} onChange={updateInput}/>
