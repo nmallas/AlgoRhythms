@@ -6,6 +6,7 @@ export default function CreateQuiz() {
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
     let [answers, setAnswers] = useState([]);
+    let [category, setCategory] = useState("jsTrivia")
     let [currentAnswerChoice, setCurrentAnswerChoice] = useState("");
     let [currentQuestionContent, setCurrentQuestionContent] = useState("");
     let [currentQuestionId, setCurrentQuestionId] = useState(0);
@@ -58,7 +59,7 @@ export default function CreateQuiz() {
         let res = await fetch("/api/quizzes/", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({questions, answers, answerChoices, quizName, userId})
+            body: JSON.stringify({questions, answers, answerChoices, quizName, userId, category})
         })
         if(res.ok) {
             let data = await res.json();
@@ -66,24 +67,32 @@ export default function CreateQuiz() {
         }
     }
 
-    console.log(answerChoices);
-    console.log(currentQuestionId);
-    console.log(answers);
     return (
         <div className="quiz-page">
             <div className="quiz-container">
+                {quizName ? <h1 className="quiz-name"> {quizName} </h1> : ""}
                 {questions.map((q, i) => {
                     return (
-                        // Require Quiz Name
+                        // Require Quiz Name & Category
                         !quizName ?
-                            <div>
-                                <input value={currentQuizName} onChange={(e)=> setCurrentQuizName(e.target.value)}/>
-                                <button onClick={()=> setQuizName(currentQuizName)}> Set Quiz Name</button>
+                            <div className="quiz-name-and-category">
+                                <div>
+                                    <input value={currentQuizName} onChange={(e)=> setCurrentQuizName(e.target.value)}/>
+                                    <button onClick={()=> setQuizName(currentQuizName)}> Set Quiz Name</button>
+                                </div>
+                                <div style={{"display": "flex"}}>
+                                    <div className="category">Category:</div>
+                                    <select onChange={(e)=> setCategory(e.target.value)}>
+                                        <option>jsTrivia</option>
+                                        <option>py_trivia</option>
+                                        <option>general</option>
+                                    </select>
+                                </div>
                             </div>
                         :
 
                         <>
-                            <h1 className="quiz-name"> {quizName} </h1>
+
                             <div className="create-quiz-question-container">
 
                                 {/* If question is set, display content in div, otherwise display input */}

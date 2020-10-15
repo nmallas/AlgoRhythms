@@ -19,7 +19,6 @@ const QuizPage = function(props) {
         getQuizzes()
     }, [])
 
-    console.log(quizzes)
     return loading ? null : (
         <div className="quizzes">
             <h1 className="quizpage-title"> Available Quizzes</h1>

@@ -20,8 +20,34 @@ def get_all():
 def create_new():
     data = request.json
     print(data)
-    newQuiz = Quiz(userId=data["userId"], category="jsTrivia", name=data["quizName"])
-    
+    previousQuiz = Quiz.query.filter(Quiz.name == data["quizName"]).first()
+    if previousQuiz:
+        return {"error": "A Quiz with that name already exists"}
+    newQuiz = Quiz(userId=data["userId"], category=data["category"], name=data["quizName"])
+    db.session.add(newQuiz)
+    db.session.commit()
+    quizId = Quiz.query.filter(Quiz.name == data["quizName"]).order_by(Quiz.id.desc()).first().id
+    print(quizId)
+    for i in range(len(data["questions"])):
+        newQuestion = Question(quizId=quizId, questionType="mc", content=data["questions"][i])
+        db.session.add(newQuestion)
+        db.session.commit()
+        questionId = Question.query.filter(Question.content == data["questions"][i]).order_by(Question.id.desc()).first().id
+        print(questionId)
+        allAnswerChoices = data["answerChoices"][i]
+        for j in range(len(allAnswerChoices)):
+            newAnswerChoice = AnswerChoice(content=allAnswerChoices[j], order=j, questionId=questionId)
+            db.session.add(newAnswerChoice)
+            db.session.commit()
+            if(int(data["answers"][i]) == j):
+                answerId = AnswerChoice.query.filter(AnswerChoice.content ==
+                             allAnswerChoices[j]).order_by(AnswerChoice.id.desc()).first().id
+                answer = AnswerJoin(questionId=questionId, answerChoiceId=answerId)
+                db.session.add(answer)
+                db.session.commit()
+    return {"success": True}
+
+
 
 
 @quiz_routes.route("/<int:id>")
