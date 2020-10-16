@@ -13,6 +13,10 @@ with app.app_context():
                 username="Demolition",
                 hashedPassword=sha256_crypt.hash("password"))
 
+    nick = User(email="nick@aol.com",
+                username="NickM",
+                hashedPassword=sha256_crypt.hash("password"))
+
     jsTrivia = Quiz(userId=1,
                     category="jsTrivia",
                     name="JavaScipt Trivia 1")
@@ -165,8 +169,77 @@ with app.app_context():
 
 
 
+    pyTrivia1 = Quiz(userId=2,
+                    category="py_trivia",
+                    name="Python Trivia 1")
+
+
+    quiz3_question1 = Question(quizId=3,
+                         questionType="mc",
+                         content="What is the difference between lists and tuples?")
+
+    quiz3_q1a1 = AnswerChoice(content="Lists can be iterated over while tuples can't be",
+                        order=1,
+                        questionId=8)
+
+    quiz3_q1a2 = AnswerChoice(content="Lists are mutable, tuples are immutable",
+                        order=2,
+                        questionId=8)
+
+    quiz3_q1a3 = AnswerChoice(content="There is no difference between the two",
+                        order=3,
+                        questionId=8)
+
+    quiz3_answerJoin1 = AnswerJoin(questionId=8, answerChoiceId=26)
+
+
+    quiz3_question2 = Question(quizId=3,
+                         questionType="mc",
+                         content="How can ternary operators be used in python?")
+
+    quiz3_q2a1 = AnswerChoice(content="[on_true] if [expression] else [on_false]",
+                        order=1,
+                        questionId=9)
+
+    quiz3_q2a2 = AnswerChoice(content="[on_true] ? [expression] : [on_false]",
+                        order=2,
+                        questionId=9)
+
+    quiz3_q2a3 = AnswerChoice(content="[on_true] && [expression] || [on_false]",
+                        order=3,
+                        questionId=9)
+
+
+    quiz3_answerJoin2 = AnswerJoin(questionId=9, answerChoiceId=28)
+
+    quiz3_question3 = Question(quizId=3,
+                         questionType="mc",
+                         content="Which method CANNOT be used to retrieve the last character in a string?")
+
+    quiz3_q3a1 = AnswerChoice(content="string[-1]",
+                        order=1,
+                        questionId=10)
+
+    quiz3_q3a2 = AnswerChoice(content="string[len(string)-1]",
+                        order=2,
+                        questionId=10)
+
+    quiz3_q3a3 = AnswerChoice(content="string[-1:]",
+                        order=3,
+                        questionId=10)
+
+    quiz3_q3a4 = AnswerChoice(content="string.last()",
+                        order=4,
+                        questionId=10)
+
+    quiz3_answerJoin3 = AnswerJoin(questionId=10, answerChoiceId=34)
+
+
+
+
 
     db.session.add(demo)
+    db.session.add(nick)
     db.session.add(jsTrivia)
     db.session.add(question1)
     db.session.add(q1a1)
@@ -209,10 +282,22 @@ with app.app_context():
     db.session.add(quiz2_q4a5)
     db.session.add(quiz2_answerJoin4)
 
-
-
-
-
-
+    db.session.add(pyTrivia1)
+    db.session.add(quiz3_question1)
+    db.session.add(quiz3_q1a1)
+    db.session.add(quiz3_q1a2)
+    db.session.add(quiz3_q1a3)
+    db.session.add(quiz3_answerJoin1)
+    db.session.add(quiz3_question2)
+    db.session.add(quiz3_q2a1)
+    db.session.add(quiz3_q2a2)
+    db.session.add(quiz3_q2a3)
+    db.session.add(quiz3_answerJoin2)
+    db.session.add(quiz3_question3)
+    db.session.add(quiz3_q3a1)
+    db.session.add(quiz3_q3a2)
+    db.session.add(quiz3_q3a3)
+    db.session.add(quiz3_q3a4)
+    db.session.add(quiz3_answerJoin3)
 
     db.session.commit()

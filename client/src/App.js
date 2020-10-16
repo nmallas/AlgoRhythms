@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-do
 import Login from "./components/Login";
 import SignUp from './components/SignUp';
 import { useSelector, useDispatch} from "react-redux";
-import Home from "./components/Home"
 import { getCurrent } from "./store/authReducer";
 import Visuals from './components/Visuals';
 import QuizPage from "./components/QuizPage"
@@ -42,7 +41,9 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
                     <ProtectedRoute path="/visuals" component={Visuals}/>
-                    <ProtectedRoute exact path="/" component={Home}/>
+                    <Route exact path="/" >
+                        <Redirect to="/quizzes"/>
+                    </Route>
                     <ProtectedRoute exact path="/quizzes" render={(props) => <QuizPage {...props}></QuizPage>}/>
                     <ProtectedRoute exact path="/quizzes/create" component={CreateQuiz}/>
                     <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>

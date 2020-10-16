@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {BarChart, CartesianGrid, XAxis, YAxis, Bar, Cell, Tooltip, ResponsiveContainer} from "recharts";
+import {BarChart, CartesianGrid, YAxis, Bar, Cell, ResponsiveContainer} from "recharts";
 
 
 
@@ -84,6 +84,52 @@ export default function Visuals(props) {
         updateData(arrCopy, current, []);
         return arrCopy;
     }
+
+
+    const quickSort = function(arr) {
+        if(arr.length < 2) return arr;
+        let pivot = arr.shift()
+        let left = [];
+        let right = [];
+        for(let i=0; i<arr.length; i++) {
+          if(arr[i] < pivot) {
+            left.push(arr[i])
+          } else {
+            right.push(arr[i])
+          }
+        }
+        let leftSorted = quickSort(left);
+        let rightSorted = quickSort(right);
+        return [...leftSorted, pivot, ...rightSorted]
+    }
+
+    function mergeSort(arr) {
+        const merge = (arr1, arr2) => {
+          let arr = [];
+          while(arr1.length && arr2.length) {
+            if(arr1[0] <= arr2[0]) {
+              arr.push(arr1.shift())
+            } else {
+              arr.push(arr2.shift())
+            }
+          }
+          return [...arr, ...arr1, ...arr2]
+        }
+
+        if(arr.length < 2) return arr;
+        let pivot = Math.floor((arr.length)/2)
+        let left = arr.slice(0, pivot)
+        let right = arr.slice(pivot)
+        let sortedLeft = mergeSort(left);
+        let sortedRight = mergeSort(right);
+        return merge(sortedLeft, sortedRight)
+
+    }
+
+
+
+
+
 
     const handleSort = (e) => {
         e.preventDefault();

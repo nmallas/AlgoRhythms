@@ -7,7 +7,6 @@ class Navbar extends React.Component {
         return (
         <nav>
             <ul className="nav-list">
-                <li><NavLink exact to="/" activeclass="active">Home</NavLink></li>
                 <li><NavLink to="/quizzes" activeclass="active">Quizzes</NavLink></li>
                 <li><NavLink exact to="/visuals" activeclass="active">Visuals</NavLink></li>
                 <li><Logout/></li>

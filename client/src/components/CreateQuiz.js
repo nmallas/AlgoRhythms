@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function CreateQuiz() {
+export default function CreateQuiz(props) {
     let [quizName, setQuizName] = useState("");
     let [questions, setQuestions] = useState([""]);
     let [answerChoices, setAnswerChoices] = useState([]);
@@ -45,7 +45,9 @@ export default function CreateQuiz() {
         let newQuestions = [...questions.slice(0, i), ...questions.slice(i+1)]
         setQuestions(newQuestions);
         let newAnswerChoices = [...answerChoices.slice(0, i), ...answerChoices.slice(i+1)];
-        setAnswerChoices(newAnswerChoices)
+        setAnswerChoices(newAnswerChoices);
+        let newAnswers = [...answers.slice(0, i), ...answers.slice(i+1)];
+        setAnswers(newAnswers);
         setCurrentQuestionId(currentQuestionId-1);
     }
 
@@ -63,7 +65,7 @@ export default function CreateQuiz() {
         })
         if(res.ok) {
             let data = await res.json();
-            console.log(data);
+            props.history.push('/quizzes/')
         }
     }
 
@@ -98,7 +100,7 @@ export default function CreateQuiz() {
                                 {/* If question is set, display content in div, otherwise display input */}
                                 { questions[i] ?
                                     <>
-                                        <div style={{display: "flex", alignItems: "center"}}>
+                                        <div style={{display: "flex", alignItems: "center"}} key={q}>
                                             <div className="create-quiz-question-label"> Question {i + 1}: </div>
                                             <div className="set-question"> {questions[i]} </div>
                                         </div>
@@ -106,7 +108,7 @@ export default function CreateQuiz() {
                                     </>
                                     :
                                     <>
-                                        <div className="create-quiz-question-label"> Question {i + 1}: </div>
+                                        <div className="create-quiz-question-label" key={q}> Question {i + 1}: </div>
                                         <textarea  className="create-quiz-question"
                                             placeholder={"write question here"} value={currentQuestionContent}
                                             name={i} onChange={updateInput}/>
@@ -121,7 +123,7 @@ export default function CreateQuiz() {
                                     {answerChoices[i].map((ac, j)=> (
                                         <div className={answers[i] === String(j)? "current-answer" : "answer-choice"}>
                                             <li> {ac} </li>
-                                            <button type="button" onClick={() => addAnswer(i, j)}> Set as Answer</button>
+                                            <button type="button" className="set-as-answer" onClick={() => addAnswer(i, j)}> Set as Answer</button>
                                         </div>
                                     ))}
                                     {/* Only allow answer choices to be added to current question  */}

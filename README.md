@@ -1,36 +1,79 @@
-# Flask React Project
+# Welcome to AlgoRhythms!
 
-## Getting started
+This is a full-stack web application built using React + Redux (front-end) & SQLAlchemy + Flask + PostgreSQL (back-end)
 
-1. Clone this repository
-2. Create a **.env** file based on the example with proper settings for your development environment
-3. Follow instructions in the [`starter_app/README.md`](./starter_app/README.md) to setup your development Back-End.
-4. Follow instructions in the [`client/README.md`](./client/README.md) to set up your development Front-End.
+AlgoRhythms is an interview practice app with customizable coding quizzes and data visualizations.
 
-## Deploying to Heroku
-### Prepping Your Heroku Project
-1. Create a new project on your Heroku Dashboard.
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line) if you haven't already.
-4. Add any Config Vars to your heroku app, either on the Heroku CLI, or on the heroku-app dashboard's Settings tab.
-
-### Prepping Your React App:
-1. Run `npm run build` in your React app root folder.
-    * This will build the static files for your React app.
-    * The `postbuild` script from your `package.json` will _automatically_ move them into the `/static` directory in your flask files.
+This project is [currently hosted on Heroku](https://algorhythms-app.herokuapp.com/)!
 
 
-### Prepping your Flask App:
-1. Enter your pipenv: `pipenv shell`
-1. Update your requirements.txt with all of the packages installed in the environemt: `pip freeze > requirements.txt`
+## MVP Features:
+
+### Feature 1: User Authentication (_Estimated time:_ 2 days - 10/06 - 10/07)
+* Users can create an account in order to access the main content of the site.
+* Users can login/logout and persist their sessions across different pages and page reloads.
+* There is a demo user available in order to provide easy access to exploring full site functionality.
+
+### Feature 2: Quiz Creation (_Estimated time:_ 2 days - 10/08 - 10/09)
+* Logged in users can create customized quizzes.
+* Quizzes can be composed of a variety of pre-defined question types.
+* Quizzes can be edited at any time by the quiz creator.
+
+### Feature 3: Quiz Taking (_Estimated time:_ 1 days - 10/12)
+* Users can sort quizzes by time and category.
+* Users can take any available quizzes and receive a percentage score.
+
+### Feature 4: Data Visualization (_Estimated time:_ 2 days - 10/13 - 10/14)
+* Users can view visualizations of common algorithms.
 
 
-### Pushing your container
+## Database Schema:
 
-1. Login to heroku: `$ heroku login`
-2. Login to the heroku container registry: `$ heroku container:login`
-3. CD into `starter_app` and push your `Dockerfile` to heroku (this will build the Flask Dockerfile, and push): `$ heroku container:push web -a {NAME_OF_HEROKU_APP}` -- (heroku container:push web -a algorhythms-app)
-5. Release your docker container to heroku: `$ heroku container:release web -a {NAME_OF_HEROKU_APP}`
-    -- (heroku container:release web -a algorhythms-app)
-6. Set up your database: `heroku run -a {NAME_OF_HEROKU_APP} {your_migration_script_here}`
-7. Profit.
+
+<img src="./client/src/images/DB_Schema.png"/>
+
+
+## Redux Sample State:
+
+```
+{
+     authentication: {
+            id: 1,
+            email: "demo@user.io",
+            username: Demolition
+     }
+     quizzes: {
+            current: {
+              correctAnswers: [2, 5, 6],
+              correctChoices:["2", "6"],
+              incorrectChoices: ["3"],
+              score: 66,
+              quizId: 1
+            }
+     }
+}
+```
+
+
+# MVP RESTful EndPoints:
+
+## Frontend Routes:
+
+| Method         | Path                     | Purpose              |
+|---             |---                       |---                   |
+| Get            | /                        |  Home Page           |
+| Get            | /users/signup            |  Sign-Up Form        |
+| Get            | /users/login             |  User Login Form     |
+| Get            | /quizzes/<quizId>        |  View Quiz           |
+| Get            | /visualizations          |  View Algo Visualizations |
+
+
+## Backend Routes:
+| Method         | Path                     | Purpose              |
+|---             |---                       |---                   |
+| Post           | /api/users                   |  Create User Account |
+| Post           | /api/users/login             |  Authenticate User   |
+| Post           | /api/quizzes                 |  Create New Quiz |
+| Put            | /api/quizzes/<quizId>        |  Edit Quiz |
+| DELETE         | /api/quizzes/<quizId>        |  Delete Quiz |
+| Post           | /api/quizzes/submit          |  Submit a Quiz |
