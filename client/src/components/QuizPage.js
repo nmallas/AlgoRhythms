@@ -21,7 +21,7 @@ const QuizPage = function(props) {
     }, [])
 
     const changePage = (num) => {
-        if((pageNum + num) < 0 || (((pageNum + 1) * 5) > quizzes.length)) return;
+        if((pageNum + num) < 0 || (((pageNum + num) * 5) > quizzes.length)) return;
         setPageNum(pageNum + num);
     }
 

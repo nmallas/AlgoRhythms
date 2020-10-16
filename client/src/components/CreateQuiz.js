@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 export default function CreateQuiz(props) {
     let [quizName, setQuizName] = useState("");
