@@ -46,7 +46,9 @@ export default function CreateQuiz(props) {
         let newQuestions = [...questions.slice(0, i), ...questions.slice(i+1)]
         setQuestions(newQuestions);
         let newAnswerChoices = [...answerChoices.slice(0, i), ...answerChoices.slice(i+1)];
-        setAnswerChoices(newAnswerChoices)
+        setAnswerChoices(newAnswerChoices);
+        let newAnswers = [...answers.slice(0, i), ...answers.slice(i+1)];
+        setAnswers(newAnswers);
         setCurrentQuestionId(currentQuestionId-1);
     }
 
@@ -122,7 +124,7 @@ export default function CreateQuiz(props) {
                                     {answerChoices[i].map((ac, j)=> (
                                         <div className={answers[i] === String(j)? "current-answer" : "answer-choice"}>
                                             <li> {ac} </li>
-                                            <button type="button" onClick={() => addAnswer(i, j)}> Set as Answer</button>
+                                            <button type="button" className="set-as-answer" onClick={() => addAnswer(i, j)}> Set as Answer</button>
                                         </div>
                                     ))}
                                     {/* Only allow answer choices to be added to current question  */}
