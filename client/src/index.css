@@ -84,6 +84,16 @@
     margin-top: 3%;
 }
 
+#login:hover {
+    background-color: rgb(82, 190, 82);
+    cursor: pointer;
+}
+
+#demo:hover {
+    background-color: rgb(73, 158, 211);
+    cursor: pointer;
+}
+
 .auth-form-input:-webkit-autofill {
     box-shadow: 0 0 0 1000px #333333 inset !important;
     /*use inset box-shadow to cover background-color*/
@@ -136,6 +146,23 @@
     border: 1px solid white;
     border-radius: 5px;
     outline: none;
+}
+
+#reset {
+    width: calc(630px + 9% );
+    margin: 1%;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    background-color: #d84747;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+
+#reset:hover {
+    background-color: #FFA372;
+    cursor: pointer;
 }
 
 #bubble:hover, #selection:hover, #insertion:hover {

@@ -6,6 +6,7 @@ import {BarChart, CartesianGrid, YAxis, Bar, Cell, ResponsiveContainer} from "re
 export default function Visuals(props) {
     const arr = [8,5,6,12,2,9,1,4]
     const [data, setData] = useState(arr.map((el, i) => ({index: i, val: el})));
+    const [finished, setFinished] = useState(false);
     let currentTimeouts = [];
 
     const updateData = (arrCopy, k, c) => setData(arrCopy.map((el, i) => ({index: i, val: el, current: k, completed: c})));
@@ -26,6 +27,7 @@ export default function Visuals(props) {
 
 
     const bubbleSort = async (arr) => {
+        setFinished(false);
         let arrCopy = [...arr];
         let completed = [];
         for(let i=arr.length; i>=0; i--) {
@@ -40,10 +42,12 @@ export default function Visuals(props) {
         }
         completed.push(0);
         updateData(arrCopy, [], completed);
+        setFinished(true);
         return arrCopy
     }
 
     const selectionSort = async (arr) => {
+        setFinished(false);
         let arrCopy = [...arr];
         let completed = [];
         for(let i=0; i<arr.length; i++) {
@@ -63,10 +67,12 @@ export default function Visuals(props) {
         }
         completed.push(arr.length -1);
         updateData(arrCopy, [], completed);
+        setFinished(true);
         return arrCopy
     }
 
     const insertionSort = async(arr) => {
+        setFinished(false);
         let arrCopy = [...arr];
         let current = [0];
         for(let i=1; i<arrCopy.length; i++) {
@@ -82,6 +88,7 @@ export default function Visuals(props) {
         }
         current.push(arr.length-1)
         updateData(arrCopy, current, []);
+        setFinished(true);
         return arrCopy;
     }
 
@@ -169,6 +176,13 @@ export default function Visuals(props) {
                 <button id="selection" onClick={handleSort}> SelectionSort</button>
                 <button id="insertion" onClick={handleSort}> InsertionSort</button>
             </div>
+            { !finished ? null :
+            <div className="visual-button-container" >
+                <button id="reset" onClick={()=> setData((arr.map((el, i) => ({index: i, val: el}))))}>
+                    Reset
+                </button>
+            </div>
+            }
         </div>
     )
 }
