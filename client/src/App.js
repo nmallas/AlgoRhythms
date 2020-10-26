@@ -10,6 +10,7 @@ import QuizPage from "./components/QuizPage"
 import Quiz from './components/Quiz';
 import Navbar from './components/Navbar';
 import CreateQuiz from './components/CreateQuiz';
+import UserQuizzes from './components/UserQuizzes';
 
 
 function App() {
@@ -44,9 +45,10 @@ function App() {
                     <Route exact path="/" >
                         <Redirect to="/quizzes"/>
                     </Route>
-                    <ProtectedRoute exact path="/quizzes" render={(props) => <QuizPage {...props}></QuizPage>}/>
+                    <ProtectedRoute exact path="/quizzes" render={(props) => <QuizPage {...props} userId={userId}></QuizPage>}/>
                     <ProtectedRoute exact path="/quizzes/create" component={CreateQuiz}/>
                     <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>
+                    <ProtectedRoute exact path="/users/:userId" component={UserQuizzes}/>
                 </Switch>
         </BrowserRouter>
     );

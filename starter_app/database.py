@@ -17,7 +17,7 @@ with app.app_context():
                 username="NickM",
                 hashedPassword=sha256_crypt.hash("password"))
 
-    jsTrivia = Quiz(userId=1,
+    jsTrivia = Quiz(userId=2,
                     category="jsTrivia",
                     name="JavaScipt Trivia 1")
 
@@ -76,7 +76,7 @@ with app.app_context():
     answerJoin3 = AnswerJoin(questionId=3, answerChoiceId=6)
 
 
-    jsTrivia2 = Quiz(userId=1,
+    jsTrivia2 = Quiz(userId=2,
                     category="jsTrivia",
                     name="JavaScipt Trivia 2")
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const QuizPage = function(props) {
+const UserQuizzes = function(props) {
 
     const [quizzes, setQuizzes] = useState("");
     const [loading, setLoading] = useState(true);
     const [pageNum, setPageNum] = useState(0);
-    console.log(props)
+
     useEffect(()=> {
         async function getQuizzes() {
             let res = await fetch("/api/quizzes/");
@@ -61,4 +61,4 @@ const QuizPage = function(props) {
     )
 }
 
-export default QuizPage
+export default UserQuizzes;
