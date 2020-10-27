@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User
+from app.models import User, Quiz
 from passlib.hash import sha256_crypt
 from app import db
 

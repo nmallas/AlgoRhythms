@@ -6,17 +6,20 @@ const UserQuizzes = function(props) {
     const [quizzes, setQuizzes] = useState("");
     const [loading, setLoading] = useState(true);
     const [pageNum, setPageNum] = useState(0);
+    const userId = props.match.params.userId;
 
     useEffect(()=> {
         async function getQuizzes() {
-            let res = await fetch("/api/quizzes/");
+            let res = await fetch(`/api/quizzes/users/${userId}`);
             if(res.ok) {
+                console.log(res);
                 let data = await res.json();
                 console.log(data)
                 setQuizzes(data.quizzes);
                 setLoading(false);
             }
         }
+        console.log("here", userId)
         getQuizzes()
     }, [])
 
@@ -25,9 +28,21 @@ const UserQuizzes = function(props) {
         setPageNum(pageNum + num);
     }
 
-    return loading ? null : (
+    return  loading ? null : quizzes ?
+
+        ( <div className="quizzes">
+            <h1 style={{color: "white", textAlign: "center", padding: "20px"}}> You Have Not Created any Quizzes </h1>
+            <div className="quiz-create-button-container">
+                        <Link to="/quizzes/create" className="quiz-create-link">
+                            <button type="button" className="quiz-create-button">Create a New Quiz</button>
+                        </Link>
+            </div>
+        </div>
+        )
+
+    : (
         <div className="quizzes">
-            <h1 className="quizpage-title"> Available Quizzes</h1>
+            <h1 className="quizpage-title"> My Quizzes</h1>
             <div className="quiz">
                 <div> Name: </div>
                 <div> Category: </div>
@@ -52,9 +67,6 @@ const UserQuizzes = function(props) {
             <div className="quiz-create-button-container">
                 <Link to="/quizzes/create" className="quiz-create-link">
                     <button type="button" className="quiz-create-button">Create a New Quiz</button>
-                </Link>
-                <Link to={`/users/${props.userId}`} className="quiz-create-link">
-                    <button type="button" className="quiz-create-button">See My Quizzes</button>
                 </Link>
             </div>
         </div>

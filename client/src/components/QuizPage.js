@@ -54,7 +54,7 @@ const QuizPage = function(props) {
                     <button type="button" className="quiz-create-button">Create a New Quiz</button>
                 </Link>
                 <Link to={`/users/${props.userId}`} className="quiz-create-link">
-                    <button type="button" className="quiz-create-button">See My Quizzes</button>
+                    <button type="button" className="quiz-create-button">See Your Quizzes</button>
                 </Link>
             </div>
         </div>

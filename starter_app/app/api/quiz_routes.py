@@ -12,8 +12,8 @@ def get_all():
     for quiz in quizzes:
         username = User.query.filter(User.id == quiz.userId).first().username
         quizinfo.append({"category": quiz.category, "name": quiz.name, "username": username, "id": quiz.id})
-    print(quizinfo)
     return {"quizzes": quizinfo}
+
 
 
 @quiz_routes.route("/", methods=["POST"])
@@ -47,7 +47,14 @@ def create_new():
                 db.session.commit()
     return {"success": True}
 
-
+@quiz_routes.route("/users/<int:id>")
+def user_quizzes(id):
+    quizzes = Quiz.query.filter(Quiz.userId == 1).all()
+    quizinfo = []
+    for quiz in quizzes:
+        quizinfo.append({"category": quiz.category, "name": quiz.name, "id": quiz.id})
+    print(quizinfo)
+    return {"quizzes": quizinfo}
 
 
 @quiz_routes.route("/<int:id>")
