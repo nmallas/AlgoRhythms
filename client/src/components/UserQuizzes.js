@@ -12,9 +12,7 @@ const UserQuizzes = function(props) {
         async function getQuizzes() {
             let res = await fetch(`/api/quizzes/users/${userId}`);
             if(res.ok) {
-                console.log(res);
                 let data = await res.json();
-                console.log(data)
                 setQuizzes(data.quizzes);
                 setLoading(false);
             }
@@ -36,10 +34,10 @@ const UserQuizzes = function(props) {
         }
     }
 
-    return  loading ? null : !quizzes ?
+    return  loading ? null : !quizzes?.length ?
 
         ( <div className="quizzes">
-            <h1 style={{color: "white", textAlign: "center", padding: "20px"}}> You Have Not Created any Quizzes </h1>
+            <h1 style={{color: "white", textAlign: "center", padding: "25px"}}> You Have Not Created any Quizzes </h1>
             <div className="quiz-create-button-container">
                         <Link to="/quizzes/create" className="quiz-create-link">
                             <button type="button" className="quiz-create-button">Create a New Quiz</button>
@@ -81,7 +79,7 @@ const UserQuizzes = function(props) {
                 <div onClick={() => changePage(+1)} className="page-change"> Next </div>
             </div>
             <div className="quiz-create-button-container">
-                <Link to="/quizzes/create" className="quiz-create-link">
+                <Link to="/quizzes/create" className="uquiz-create-link">
                     <button type="button" className="quiz-create-button">Create a New Quiz</button>
                 </Link>
             </div>

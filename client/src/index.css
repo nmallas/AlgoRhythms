@@ -277,6 +277,7 @@
 
 .quizpage-title {
     text-align: center;
+    margin-right: 100px;
     color: white;
     text-decoration: underline;
     font-family: 'Times New Roman', Times, serif;
@@ -658,7 +659,7 @@
 
 #delete-quiz:hover {
     cursor: pointer;
-    background-color:  #fc8c50;
+    background-color:  #c02624;
 }
 
 #delete-div {
@@ -693,9 +694,11 @@
 
 .uquiz-container {
     width: 100%;
-    /* border: 1px solid white; */
-
 }
 
+.uquiz-create-link {
+    width: 50%;
+    margin-right: 100px;
+}
 
 /* Quizzes */
