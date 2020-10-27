@@ -72,6 +72,43 @@ def get_one(id):
         all_questions.append(question_and_answers)
     return {quiz.name: all_questions}
 
+@quiz_routes.route("/<int:id>", methods=["DELETE"])
+def delete_one(id):
+    # Find the given quiz
+    quiz = Quiz.query.filter(Quiz.id == id).first()
+
+    # Don't let users delete preseeded quizzes
+    if quiz.userId == 2:
+        return {"error": "You can't delete quizzes for this user"}
+
+    # Find all submissions with submissionId
+    submissions = Submission.query.filter(Submission.quizId == quiz.id).all()
+    for submission in submissions:
+        #Find all incorrectAnswers
+        incorrectAnswers = IncorrectAnswers.query.filter(IncorrectAnswers.submissionId == submission.id).all()
+        # Delete all incorrect Answers
+        for incorrect in incorrectAnswers:
+            db.session.delete(incorrect)
+        # Delete submission
+        db.session.delete(submission)
+
+    # Find all questions with quizId
+    questions = Question.query.filter(Question.quizId == quiz.id).all()
+    for question in questions:
+        # Find all answers and correct answer for given question
+        answers = AnswerChoice.query.filter(AnswerChoice.questionId == question.id).all()
+        answerJoin = AnswerJoin.query.filter(AnswerJoin.questionId == question.id).first()
+        # Delete all answers
+        for answer in answers:
+            db.session.delete(answer)
+        # Delete correct answer and question
+        db.session.delete(answerJoin)
+        db.session.delete(question)
+
+    db.session.delete(quiz)
+    db.session.commit()
+    return {"success": True}
+
 
 @quiz_routes.route("/submit", methods=["POST"])
 def submit():

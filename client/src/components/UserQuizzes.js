@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const UserQuizzes = function(props) {
 
@@ -19,13 +19,21 @@ const UserQuizzes = function(props) {
                 setLoading(false);
             }
         }
-        console.log("here", userId)
         getQuizzes()
     }, [])
 
     const changePage = (num) => {
         if((pageNum + num) < 0 || (((pageNum + num) * 5) > quizzes.length)) return;
         setPageNum(pageNum + num);
+    }
+
+    const handleDelete = async (id) => {
+        let res = await fetch(`/api/quizzes/${id}`, {
+            method: "DELETE",
+        });
+        if(res.ok) {
+            props.history.push('/quizzes/')
+        }
     }
 
     return  loading ? null : !quizzes ?
@@ -52,13 +60,6 @@ const UserQuizzes = function(props) {
                 </div>
                 <div id="delete-div"></div>
             </div>
-            {/* <div className="quiz">
-                <div className="user-quiz-titles">
-                    <div> Name: </div>
-                    <div> Category: </div>
-                    <div></div>
-                </div>
-            </div> */}
             {
                 quizzes.slice((pageNum * 5), (pageNum + 1) * 5 ).map(quiz => (
                     <div className="user-quiz">
@@ -68,7 +69,9 @@ const UserQuizzes = function(props) {
                                 <div>{quiz.category}</div>
                             </div>
                         </Link>
-                        <div id="delete-div"><button id="delete-quiz"> Delete Quiz</button></div>
+                        <div id="delete-div">
+                            <button id="delete-quiz" onClick={() => handleDelete(quiz.id)}> Delete Quiz</button>
+                            </div>
                     </div>
                 ))
             }
