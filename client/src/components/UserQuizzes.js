@@ -45,7 +45,7 @@ const UserQuizzes = function(props) {
             <h1 className="quizpage-title"> My Quizzes</h1>
             <div className="user-quiz">
                 <div className="uquiz-container">
-                    <div className="uquiz quizdiv">
+                    <div className="uquiz">
                         <div>Name:</div>
                         <div>Category:</div>
                     </div>
@@ -72,7 +72,7 @@ const UserQuizzes = function(props) {
                     </div>
                 ))
             }
-            <div className="pageNumbers">
+            <div className="upageNumbers">
                 <div onClick={() => changePage(-1)} className="page-change"> Previous </div>
                 <div>{`${pageNum * 5 +1} - ${Math.min((pageNum +1) * 5, quizzes.length)}  of  ${quizzes.length}`}</div>
                 <div onClick={() => changePage(+1)} className="page-change"> Next </div>

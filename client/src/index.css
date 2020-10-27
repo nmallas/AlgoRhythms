@@ -549,7 +549,15 @@
     justify-content: flex-end;
 }
 
-.pageNumbers div {
+.upageNumbers {
+    width: calc(80% - 200px);
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pageNumbers div, .upageNumbers div {
     margin: 10px;
 }
 
@@ -653,7 +661,7 @@
     justify-content: space-around;
     width: 80%;
     margin: auto;
-    padding: 20px 0;
+    padding: 0 0;
     color: white;
     font-size: 18px;
 }
