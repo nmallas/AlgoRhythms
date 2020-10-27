@@ -28,7 +28,7 @@ const UserQuizzes = function(props) {
         setPageNum(pageNum + num);
     }
 
-    return  loading ? null : quizzes ?
+    return  loading ? null : !quizzes ?
 
         ( <div className="quizzes">
             <h1 style={{color: "white", textAlign: "center", padding: "20px"}}> You Have Not Created any Quizzes </h1>
@@ -43,20 +43,33 @@ const UserQuizzes = function(props) {
     : (
         <div className="quizzes">
             <h1 className="quizpage-title"> My Quizzes</h1>
-            <div className="quiz">
-                <div> Name: </div>
-                <div> Category: </div>
-                <div> Username: </div>
+            <div className="user-quiz">
+                <div className="uquiz-container">
+                    <div className="uquiz quizdiv">
+                        <div>Name:</div>
+                        <div>Category:</div>
+                    </div>
+                </div>
+                <div id="delete-div"></div>
             </div>
+            {/* <div className="quiz">
+                <div className="user-quiz-titles">
+                    <div> Name: </div>
+                    <div> Category: </div>
+                    <div></div>
+                </div>
+            </div> */}
             {
                 quizzes.slice((pageNum * 5), (pageNum + 1) * 5 ).map(quiz => (
-                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" key={quiz.name}>
-                        <div className="quiz quizdiv" key={quiz.id}>
-                            <div>{quiz.name}</div>
-                            <div>{quiz.category}</div>
-                            <div>{quiz.username}</div>
-                        </div>
-                    </Link>
+                    <div className="user-quiz">
+                        <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" key={quiz.name}>
+                            <div className="uquiz quizdiv" key={quiz.id}>
+                                <div>{quiz.name}</div>
+                                <div>{quiz.category}</div>
+                            </div>
+                        </Link>
+                        <div id="delete-div"><button id="delete-quiz"> Delete Quiz</button></div>
+                    </div>
                 ))
             }
             <div className="pageNumbers">

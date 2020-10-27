@@ -463,14 +463,6 @@
     width: 70%;
 }
 
-/* .add-answer-choice {
-    color: white;
-
-    border: none;
-    padding: 6px;
-    margin-left: 10px;
-    font-size: 15px;
-} */
 
 .add-answer-choice {
     color: white;
@@ -636,6 +628,56 @@
     padding: 5px;
 }
 
+
+.user-quiz-titles {
+    display: flex;
+}
+
+.user-quiz-titles div{
+    width: 66%;
+}
+
+#delete-quiz {
+    width: 100%;
+    height: 100%;
+
+}
+
+#delete-div {
+    background-color: none;
+    min-width: 100px;
+}
+
+.user-quiz {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    padding: 20px 0;
+    color: white;
+    font-size: 18px;
+}
+
+.user-quiz a{
+    width: 100%;
+}
+
+.uquiz {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: auto;
+    padding: 20px 0;
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+}
+
+.uquiz-container {
+    width: 100%;
+    border: 1px solid white;
+
+}
 
 
 /* Quizzes */
