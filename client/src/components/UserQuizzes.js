@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UserQuizzes = function(props) {
 
@@ -18,7 +18,7 @@ const UserQuizzes = function(props) {
             }
         }
         getQuizzes()
-    }, [])
+    }, [userId])
 
     const changePage = (num) => {
         if((pageNum + num) < 0 || (((pageNum + num) * 5) > quizzes.length)) return;
@@ -61,7 +61,7 @@ const UserQuizzes = function(props) {
             {
                 quizzes.slice((pageNum * 5), (pageNum + 1) * 5 ).map(quiz => (
                     <div className="user-quiz">
-                        <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" key={quiz.name}>
+                        <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" >
                             <div className="uquiz quizdiv" key={quiz.id}>
                                 <div>{quiz.name}</div>
                                 <div>{quiz.category}</div>

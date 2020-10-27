@@ -20,7 +20,6 @@ class SignUp extends React.Component {
 
     handleSumbit = (e) => {
         e.preventDefault();
-        console.log('submitting')
         this.props.SignUpUser(this.state)
     }
 

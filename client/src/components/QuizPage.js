@@ -6,13 +6,12 @@ const QuizPage = function(props) {
     const [quizzes, setQuizzes] = useState("");
     const [loading, setLoading] = useState(true);
     const [pageNum, setPageNum] = useState(0);
-    console.log(props)
+
     useEffect(()=> {
         async function getQuizzes() {
             let res = await fetch("/api/quizzes/");
             if(res.ok) {
                 let data = await res.json();
-                console.log(data)
                 setQuizzes(data.quizzes);
                 setLoading(false);
             }
@@ -25,7 +24,7 @@ const QuizPage = function(props) {
         setPageNum(pageNum + num);
     }
 
-    return loading ? null : (
+    return loading ? <div className="quizzes"/> : (
         <div className="quizzes">
             <h1 className="quizpage-title"> Available Quizzes</h1>
             <div className="quiz">
@@ -35,7 +34,7 @@ const QuizPage = function(props) {
             </div>
             {
                 quizzes.slice((pageNum * 5), (pageNum + 1) * 5 ).map(quiz => (
-                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" key={quiz.name}>
+                    <Link to={`/quizzes/${quiz.id}`} key={quiz.id} className="quizlink" >
                         <div className="quiz quizdiv" key={quiz.id}>
                             <div>{quiz.name}</div>
                             <div>{quiz.category}</div>
@@ -53,7 +52,7 @@ const QuizPage = function(props) {
                 <Link to="/quizzes/create" className="quiz-create-link">
                     <button type="button" className="quiz-create-button">Create a New Quiz</button>
                 </Link>
-                <Link to={`/users/${props.userId}`} className="quiz-create-link">
+                <Link to={`/quizzes/users/${props.userId}`} className="quiz-create-link">
                     <button type="button" className="quiz-create-button">See Your Quizzes</button>
                 </Link>
             </div>
