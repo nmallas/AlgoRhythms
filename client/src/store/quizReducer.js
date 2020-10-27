@@ -31,7 +31,6 @@ export const submitQuiz = ({answers, quizId, userId}) => {
         })
         if(res.ok) {
             let data = await res.json();
-            console.log(data);
             dispatch(setCurrentAnswers(data));
             return data.current.score
         }

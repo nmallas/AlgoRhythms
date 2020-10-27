@@ -41,7 +41,6 @@ export default function Quiz(props) {
         let totalQuestions = quizData.length;
         let totalAnswers = Object.keys(answers).length;
         if(totalQuestions !== totalAnswers) {
-            console.log(quizData, totalAnswers)
             setQuizErrors("* You Must Answer Every Question *");
             return;
         }
@@ -92,12 +91,12 @@ export default function Quiz(props) {
                         {quizData.map(q => {
                             if(q.question.type === "mc") {
                                 return (
-                                    <div className="mc-question">
+                                    <div className="mc-question" key={q.question.id}>
                                         <div className="mc-question-title"> {q.question.content} </div>
                                         <div className="mc-answers">
                                             {
                                             q.answers.map((a, i) =>
-                                                <div className="mc-answer" >
+                                                <div className="mc-answer" key={a.id}>
                                                     {taken && taken.incorrectChoices.includes(String(a.id)) ?
                                                         <div className={"quiz-feedback"} style={{color: "#FF5103"}}>✘</div> :
                                                     taken && taken.correctChoices.includes(String(a.id)) ?
@@ -110,14 +109,14 @@ export default function Quiz(props) {
                                                     <input  onChange={updateAnswers} type="radio" name={q.question.id}
                                                             disabled={taken}
                                                             value={a.id} style={{"marginLeft": "10px"}}
-                                                            checked={answers[q.question.id] == a.id}
+                                                            checked={answers[q.question.id] === String(a.id)}
                                                     />
                                                     <div style={{"marginLeft": "10px"}}>{a.content} </div>
                                                 </div>)}
                                         </div>
                                     </div>
                                 )
-                            }
+                            } else return null;
                         })}
                         <div className="errors">{quizErrors}</div>
                         <button type="submit" onClick={handleClick} className="quiz-submit quiz-button">Submit</button>

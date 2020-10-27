@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Login from "./components/Login";
 import SignUp from './components/SignUp';
@@ -21,7 +21,7 @@ function App() {
     useEffect(() => {
         dispatch(getCurrent());
         setLoading(false);
-    }, [])
+    }, [dispatch])
 
     const userId = useSelector(state => state.auth.id);
 
@@ -34,10 +34,8 @@ function App() {
         ) : <Redirect to="/login"/>
     }
 
-    return (
+    return loading ? null : (
         <BrowserRouter>
-
-
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
@@ -47,8 +45,9 @@ function App() {
                     </Route>
                     <ProtectedRoute exact path="/quizzes" render={(props) => <QuizPage {...props} userId={userId}></QuizPage>}/>
                     <ProtectedRoute exact path="/quizzes/create" component={CreateQuiz}/>
+                    <ProtectedRoute exact path="/quizzes/users/:userId" component={UserQuizzes}/>
                     <ProtectedRoute exact path="/quizzes/:quizId" component={Quiz}/>
-                    <ProtectedRoute exact path="/users/:userId" component={UserQuizzes}/>
+
                 </Switch>
         </BrowserRouter>
     );

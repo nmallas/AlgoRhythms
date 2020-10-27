@@ -9,7 +9,6 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/', methods=["POST"])
 def createUser():
     data = request.json
-    print(data)
     if(data["password"] != data["confirmPassword"]):
         return {"error": "Passwords Must Match!"}
     newUser = User(
@@ -21,7 +20,6 @@ def createUser():
     user = User.query.filter(User.email == data["email"]).first()
     if user:
         session["userId"] = user.id
-    print({"login": user.to_dict()})
     return {"login": user.to_dict()}
 
 
@@ -35,7 +33,7 @@ def login():
         auth = sha256_crypt.verify(data["password"], str(user.hashedPassword))
         if not auth:
             return {"error": "Incorrect Email or Password"}
-    print(user.to_dict())
+
     return {"login": user.to_dict()}
 
 
@@ -54,5 +52,4 @@ def current():
     if "userId" in session:
         user = User.query.filter(User.id == session["userId"]).first()
         authentication = {"current": user.to_dict()}
-    print(authentication)
     return authentication

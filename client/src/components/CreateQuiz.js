@@ -64,7 +64,6 @@ export default function CreateQuiz(props) {
             body: JSON.stringify({questions, answers, answerChoices, quizName, userId, category})
         })
         if(res.ok) {
-            let data = await res.json();
             props.history.push('/quizzes/')
         }
     }

@@ -29,7 +29,6 @@ export const login = (email, password) => {
         })
         if(res.ok) {
             let data = await res.json()
-            console.log(data);
             dispatch(setUser(data.login))
         }
     }
@@ -45,7 +44,6 @@ export const signup = (email, username, password, confirmPassword) => {
         })
         if (res.ok) {
             let data = await res.json();
-            console.log(data);
             dispatch(setUser(data.login))
         }
     }
