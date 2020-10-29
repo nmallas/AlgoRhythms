@@ -79,10 +79,9 @@ export default function Visuals(props) {
             for(let j=i; j>0; j--) {
                 if(arrCopy[j] < arrCopy[j-1] ) {
                     [arrCopy[j], arrCopy[j-1]] = [arrCopy[j-1], arrCopy[j]];
-                    updateData(arrCopy, current, [j-1]);
                     await sleep(300 * j);
+                    updateData(arrCopy, current, [j-1]);
                 }
-
             }
             current.push(i);
         }
@@ -138,7 +137,6 @@ export default function Visuals(props) {
 
 
     const handleSort = (e) => {
-        e.preventDefault();
         if(e.target.id === "bubble") {
             bubbleSort(arr);
         } else if ((e.target.id === "selection")) {
