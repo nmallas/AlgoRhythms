@@ -11,6 +11,7 @@ import Quiz from './components/Quiz';
 import Navbar from './components/Navbar';
 import CreateQuiz from './components/CreateQuiz';
 import UserQuizzes from './components/UserQuizzes';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <>
                 <Navbar/>
                 <Route exact={exact} path={path} render={render} component={component}/>
+                <Footer/>
             </>
         ) : <Redirect to="/login"/>
     }
