@@ -710,14 +710,24 @@
     /* border-top: 1px solid white; */
     /* background-color: rgb(243, 243, 243); */
     background-color: #040F15;
-
+    position: relative;
     color: white;
 }
 
 .footer-container {
+    position: absolute;
+    top: 0;
     width: 100%;
+    background-color: #040F15;
+}
+
+.footer-gradient {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 3;
     background-color: #4D8AAE;
-    mask-image: linear-gradient(to bottom, transparent 9%,  #040F15 36%);
+    mask-image: linear-gradient(to bottom, transparent 15%,  #040F15 100%);
 }
 
 .footer-content {
@@ -729,8 +739,8 @@
 }
 
 .footer-content h2 {
-    padding: 0.3em 0;
-    margin-top: 10%;
+    padding: 0.2em 0;
+    margin: 10% 0 2% 0;
     font-size: 1.8em;
     /* text-decoration: underline; */
     border-bottom: 1px solid white;
@@ -749,7 +759,7 @@
 
 .footer-contact a:hover {
     border-bottom: none;
-    color: black;
+    color: #f700ff;
 }
 
 .icons {
@@ -767,7 +777,7 @@
 }
 
 .icon:hover {
-    color: black;
+    color: #d100d8;
 }
 
 
