@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {BarChart, CartesianGrid, YAxis, Bar, Cell, ResponsiveContainer} from "recharts";
+import Footer from "./Footer";
 
 
 
@@ -147,39 +148,42 @@ export default function Visuals(props) {
     }
 
     return (
-        <div className="visual-container">
-            <div className="chart-container">
-            <ResponsiveContainer width="70%" height={350}>
-                <BarChart data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    {/* <XAxis dataKey="index" /> */}
-                    <YAxis />
-                    {/* <Tooltip position={{"x": 25, "y": 0}} animationDuration={2500}/> */}
-                    <Bar dataKey="val" >
-                    {
-                        data.map((entry, i) => {
-                            const color = (entry.completed?.includes(i)) ? "#ed6663" :
-                                        (entry.current?.includes(i)) ? "#ffa372":
-                                        "#4e89ae";
-                            return <Cell fill={color} key={i}/>;
-                        })
-                    }
-                    </Bar>
-                </BarChart>
-            </ResponsiveContainer>
+        <>
+            <div className="visual-container">
+                <div className="chart-container">
+                <ResponsiveContainer width="70%" height={350}>
+                    <BarChart data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        {/* <XAxis dataKey="index" /> */}
+                        <YAxis />
+                        {/* <Tooltip position={{"x": 25, "y": 0}} animationDuration={2500}/> */}
+                        <Bar dataKey="val" >
+                        {
+                            data.map((entry, i) => {
+                                const color = (entry.completed?.includes(i)) ? "#ed6663" :
+                                            (entry.current?.includes(i)) ? "#ffa372":
+                                            "#4e89ae";
+                                return <Cell fill={color} key={i}/>;
+                            })
+                        }
+                        </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
+                </div>
+                <div className="visual-button-container">
+                    <button id="bubble" onClick={handleSort}> BubbleSort</button>
+                    <button id="selection" onClick={handleSort}> SelectionSort</button>
+                    <button id="insertion" onClick={handleSort}> InsertionSort</button>
+                </div>
+                { !finished ? null :
+                <div className="visual-button-container" >
+                    <button id="reset" onClick={()=> setData((arr.map((el, i) => ({index: i, val: el}))))}>
+                        Reset
+                    </button>
+                </div>
+                }
             </div>
-            <div className="visual-button-container">
-                <button id="bubble" onClick={handleSort}> BubbleSort</button>
-                <button id="selection" onClick={handleSort}> SelectionSort</button>
-                <button id="insertion" onClick={handleSort}> InsertionSort</button>
-            </div>
-            { !finished ? null :
-            <div className="visual-button-container" >
-                <button id="reset" onClick={()=> setData((arr.map((el, i) => ({index: i, val: el}))))}>
-                    Reset
-                </button>
-            </div>
-            }
-        </div>
+            <Footer/>
+        </>
     )
 }

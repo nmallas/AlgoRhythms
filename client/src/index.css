@@ -702,3 +702,83 @@
 }
 
 /* Quizzes */
+
+/* Footer */
+
+#footer {
+    width: 100%;
+    /* border-top: 1px solid white; */
+    /* background-color: rgb(243, 243, 243); */
+    background-color: #040F15;
+    position: relative;
+    color: white;
+}
+
+.footer-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #040F15;
+}
+
+.footer-gradient {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: #4D8AAE;
+    mask-image: linear-gradient(to bottom, transparent 15%,  #040F15 100%);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+}
+
+.footer-content h2 {
+    padding: 0.2em 0;
+    margin: 10% 0 2% 0;
+    font-size: 1.8em;
+    /* text-decoration: underline; */
+    border-bottom: 1px solid white;
+}
+
+.footer-content p {
+    font-size: 1.2em;
+    margin: 0.3em 0;
+}
+
+.footer-contact a{
+    color:white;
+    text-decoration: none;
+    border-bottom: 1px dotted white;
+}
+
+.footer-contact a:hover {
+    border-bottom: none;
+    color: #f700ff;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin: 0.3em auto;
+    list-style-type: none;
+    padding: 0;
+}
+
+.icon {
+    text-decoration: none;
+    color: white;
+}
+
+.icon:hover {
+    color: #d100d8;
+}
+
+
+/* Footer */
