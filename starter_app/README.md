@@ -1,12 +1,3 @@
-# Flask React Project
-
-## Getting started
-
-1. Clone this repository
-2. Create a **.env** file based on the example with proper settings for your development environment
-3. Follow instructions in the [`starter_app/README.md`](./starter_app/README.md) to setup your development Back-End.
-4. Follow instructions in the [`client/README.md`](./client/README.md) to set up your development Front-End.
-
 ## Deploying to Heroku
 ### Prepping Your Heroku Project
 1. Create a new project on your Heroku Dashboard.
