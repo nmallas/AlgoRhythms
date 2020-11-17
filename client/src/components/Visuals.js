@@ -177,7 +177,10 @@ export default function Visuals(props) {
                 </div>
                 { !finished ? null :
                 <div className="visual-button-container" >
-                    <button id="reset" onClick={()=> setData((arr.map((el, i) => ({index: i, val: el}))))}>
+                    <button id="reset" onClick={()=> {
+                        setData((arr.map((el, i) => ({index: i, val: el}))));
+                        setFinished(false);
+                        }}>
                         Reset
                     </button>
                 </div>

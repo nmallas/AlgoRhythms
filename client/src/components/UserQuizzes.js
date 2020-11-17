@@ -48,7 +48,7 @@ const UserQuizzes = function(props) {
 
     : (
         <div className="quizzes">
-            <h1 className="quizpage-title"> My Quizzes</h1>
+            <h1 className="myquizzes-title"> My Quizzes</h1>
             <div className="user-quiz">
                 <div className="uquiz-container">
                     <div className="uquiz">

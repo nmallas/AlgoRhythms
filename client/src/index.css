@@ -275,9 +275,18 @@
 
 }
 
-.quizpage-title {
+.myquizzes-title {
     text-align: center;
     margin-right: 100px;
+    color: white;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    padding: 20px 0;
+}
+
+.quizpage-title {
+    text-align: center;
     color: white;
     text-decoration: underline;
     font-family: 'Times New Roman', Times, serif;
